@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - UI_StartMenu
+  - UI_Help
+  - UI_Settings
   layers:
   - Default
   - TransparentFX
