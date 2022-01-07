@@ -4,8 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Herd
   - Fridge
+=======
+  - UI_StartMenu
+  - UI_Help
+  - UI_Settings
+>>>>>>> 4d5d130e8eabc770672fe30a56d81a3de26c62d7
   layers:
   - Default
   - TransparentFX
