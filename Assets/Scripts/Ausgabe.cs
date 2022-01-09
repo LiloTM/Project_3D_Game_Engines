@@ -24,7 +24,7 @@ public class Ausgabe : MonoBehaviour
             score.increaseScore(5);          
         }
 
-        if(other.gameObject.CompareTag("Pizza") /* && it's needed*/){
+        if(other.gameObject.CompareTag("PizzaRdy") /* && it's needed*/){
             Destroy(other.gameObject);
             score.increaseScore(10);   
         }
