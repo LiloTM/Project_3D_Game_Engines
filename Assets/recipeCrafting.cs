@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class recipeCrafting : MonoBehaviour
 {
     private GameObject pizzaFrozen;
     private GameObject pizzaRdy;
+    private GameObject tellerEmpty;
+    public Slider cookingSlider;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -13,11 +17,21 @@ public class recipeCrafting : MonoBehaviour
         pizzaFrozen = GameObject.FindGameObjectWithTag("PizzaFrozen");
         pizzaFrozen.SetActive(false);
         pizzaRdy = GameObject.FindGameObjectWithTag("PizzaRdy");
+        pizzaRdy.SetActive(false);
+        tellerEmpty = GameObject.FindGameObjectWithTag("Teller");
+        tellerEmpty.SetActive(false);
+
+        //cookingSlider.gameObject.SetActive(true);
+        cookingSlider.value = 0;
+
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
+        if(cookingSlider.gameObject.activeSelf){
+            cookingSlider.value = cookingSlider.value + 2;
+        } 
         
     }
 
@@ -28,7 +42,17 @@ public class recipeCrafting : MonoBehaviour
 
         if (other.CompareTag("Herd")){
             pizzaFrozen.SetActive(false);
-            //pizzaTimer.SetActive(true);
+            cookingSlider.gameObject.SetActive(true);
+        }
+
+        if(cookingSlider.value == 500){
+            pizzaRdy.SetActive(true);
+            cookingSlider.gameObject.SetActive(false);
+            tellerEmpty.SetActive(false);
+        }
+
+        if (other.CompareTag("Teller")){
+            tellerEmpty.SetActive(true);
         }
     }
 }
