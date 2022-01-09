@@ -8,8 +8,12 @@ TagManager:
   - Fridge
   - Coffee
   - Pizza
-  - UI_StartMenu
   - UI_Settings
+  - UI_StartMenu
+  - PizzaFrozen
+  - PizzaRdy
+  - Teller
+
   layers:
   - Default
   - TransparentFX
