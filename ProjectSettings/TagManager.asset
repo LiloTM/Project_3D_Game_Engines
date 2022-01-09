@@ -7,10 +7,13 @@ TagManager:
   - Herd
   - Fridge
   - Coffee
+  - Pizza
+  - UI_Settings
   - UI_StartMenu
   - PizzaFrozen
   - PizzaRdy
   - Teller
+
   layers:
   - Default
   - TransparentFX
