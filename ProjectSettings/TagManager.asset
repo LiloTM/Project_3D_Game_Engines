@@ -13,7 +13,11 @@ TagManager:
   - PizzaFrozen
   - PizzaRdy
   - Teller
-
+  - Trash
+  - Tasse
+  - TasseEmpty
+  - TasseFull
+  - TasseMaker
   layers:
   - Default
   - TransparentFX
