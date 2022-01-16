@@ -13,6 +13,11 @@ TagManager:
   - PizzaFrozen
   - PizzaRdy
   - Teller
+  - Trash
+  - Tasse
+  - TasseEmpty
+  - TasseFull
+  - TasseMaker
   - CoffeeRecipe
   - PizzaRecipe
   layers:
