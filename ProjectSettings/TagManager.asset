@@ -18,6 +18,8 @@ TagManager:
   - TasseEmpty
   - TasseFull
   - TasseMaker
+  - CoffeeRecipe
+  - PizzaRecipe
   layers:
   - Default
   - TransparentFX
