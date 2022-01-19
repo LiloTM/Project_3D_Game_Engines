@@ -20,6 +20,7 @@ TagManager:
   - TasseMaker
   - CoffeeRecipe
   - PizzaRecipe
+  - UI_Help
   layers:
   - Default
   - TransparentFX

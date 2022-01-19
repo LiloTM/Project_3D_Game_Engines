@@ -19,28 +19,37 @@ public class StartMenu : MonoBehaviour
         menu = GameObject.FindGameObjectWithTag("UI_StartMenu");
         helpUI = GameObject.FindGameObjectWithTag("UI_Help");
         settingsUI = GameObject.FindGameObjectWithTag("UI_Settings");
-        musicON = GameObject.FindGameObjectWithTag("ON");
-        musicOFF = GameObject.FindGameObjectWithTag("OFF");
+        //musicON = GameObject.FindGameObjectWithTag("ON");
+        //musicOFF = GameObject.FindGameObjectWithTag("OFF");
 
         menu.SetActive(true);
         helpUI.SetActive(false);
         settingsUI.SetActive(false);
 
-        sound = GetComponent<AudioSource>();
-        sound.Play();
+        //sound = GetComponent<AudioSource>();
+        //sound.Play();
     }
 
     void Update() {
     }
 
-    public void StartGame() {
-        Debug.Log("Das Startmenu übergibt dem Game: " + MusicIsOn);
-        SceneManager.LoadScene("GameScene");
+    public void Chillig() {
+        //Debug.Log("Das Startmenu übergibt dem Game: " + MusicIsOn);
+        SceneManager.LoadScene("Chillig");
+        Time.timeScale = 1f;
+    }
+
+    public void Stressig() {
+        SceneManager.LoadScene("Stressig");
         Time.timeScale = 1f;
     }
 
     public void Help() {
         helpUI.SetActive(true);
+    }
+
+    public void CloseHelp(){
+        helpUI.SetActive(false);
     }
 
     public void Quit() {
@@ -49,14 +58,16 @@ public class StartMenu : MonoBehaviour
 
     public void Settings() {
         settingsUI.SetActive(true);
+        menu.SetActive(false);
     }
 
     // Settings & Help UIS
     public void Home() {
         settingsUI.SetActive(false);
         helpUI.SetActive(false);
+        menu.SetActive(true);
     }
-
+/*
     public void Music()
     {
         if(musicIsOn) {
@@ -85,7 +96,7 @@ public class StartMenu : MonoBehaviour
         }
         
     }
-
+*/
     public static bool MusicIsOn { 
         get { return musicIsOn; }
     }
