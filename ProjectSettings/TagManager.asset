@@ -26,6 +26,9 @@ TagManager:
   - APizza
   - AnanasBox
   - Brett
+  - FridgeHuhn
+  - huhnFrozen
+  - huhnRdy
   layers:
   - Default
   - TransparentFX
