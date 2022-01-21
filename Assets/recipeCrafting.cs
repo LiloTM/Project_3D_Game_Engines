@@ -11,10 +11,17 @@ public class recipeCrafting : MonoBehaviour
     private GameObject TasseFull;
     private GameObject TasseEmpty;
     private GameObject TasseMaker;
+    private GameObject Ananas;
+    private GameObject APizza;
+    private GameObject AnanasCutted1;
+    private GameObject AnanasCutted2;
+
 
     public Slider cookingSliderHerd;
     public Slider cookingSliderKaffee;
+    public Slider cookingSliderAnanas;
     bool carrying, carryFrozen, carryTeller, carryPizza, carryTasseEmpty, carryTasseFull, cupMaker;
+    bool carryAnanas, carryAPizza;
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +38,19 @@ public class recipeCrafting : MonoBehaviour
         TasseEmpty.SetActive(false);
         TasseMaker = GameObject.FindGameObjectWithTag("TasseMaker");
         TasseMaker.SetActive(false);
+        Ananas = GameObject.FindGameObjectWithTag("Ananas");
+        Ananas.SetActive(false);
+        AnanasCutted1 = GameObject.FindGameObjectWithTag("AnanasCutted1");
+        AnanasCutted1.SetActive(false);
+        AnanasCutted2 = GameObject.FindGameObjectWithTag("AnanasCutted2");
+        AnanasCutted2.SetActive(false);
+        APizza = GameObject.FindGameObjectWithTag("APizza");
+        APizza.SetActive(false);
 
         //cookingSlider.gameObject.SetActive(true);
         cookingSliderHerd.value = 0;
         cookingSliderKaffee.value = 0;
+        cookingSliderAnanas.value = 0;
         carrying = false;
         carryFrozen = false;
         carryTeller = false;
@@ -42,6 +58,8 @@ public class recipeCrafting : MonoBehaviour
         carryTasseEmpty = false;
         carryTasseFull = false;
         cupMaker = false;
+        carryAnanas = false;
+        carryAPizza = false;
     }
 
     // Update is called once per frame
@@ -53,6 +71,14 @@ public class recipeCrafting : MonoBehaviour
         if(cookingSliderKaffee.gameObject.activeSelf){
             cookingSliderKaffee.value = cookingSliderKaffee.value + 2;
         }
+        if(cookingSliderAnanas.gameObject.activeSelf){
+            cookingSliderAnanas.value = cookingSliderAnanas.value + 2;
+        }
+
+        if(cookingSliderAnanas.value > 250){
+            AnanasCutted1.SetActive(false);
+            AnanasCutted2.SetActive(true);
+        }
         
     }
 
@@ -61,6 +87,20 @@ public class recipeCrafting : MonoBehaviour
             pizzaFrozen.SetActive(true);
             carryFrozen = true;
             carrying = true;
+        }
+
+        if (other.CompareTag("AnanasBox") && carrying == false){
+             Ananas.SetActive(true);
+             carryAnanas = true;
+             carrying = true;
+        }
+        
+        if (other.CompareTag("Brett") && carryAnanas == true){
+            Ananas.SetActive(false);
+            AnanasCutted1.SetActive(true);
+            cookingSliderAnanas.gameObject.SetActive(true);
+            carryAnanas = false;
+            carrying = false;
         }
 
         if (other.CompareTag("Herd") && carryFrozen == true){
@@ -74,6 +114,16 @@ public class recipeCrafting : MonoBehaviour
             tellerEmpty.SetActive(true);
             carryTeller = true;
             carrying = true;
+        }
+
+        if(cookingSliderAnanas.value == 500 && other.CompareTag("Brett") && carryPizza == true){
+            APizza.SetActive(true);
+            cookingSliderAnanas.gameObject.SetActive(false);
+            pizzaRdy.SetActive(false);
+            AnanasCutted2.SetActive(false);
+            carryPizza = false;
+            carryAPizza = true;
+            cookingSliderAnanas.value = 0;
         }
 
         if(cookingSliderHerd.value == 500 && other.CompareTag("Herd") && carryTeller == true){
@@ -117,12 +167,16 @@ public class recipeCrafting : MonoBehaviour
             tellerEmpty.SetActive(false);
             TasseFull.SetActive(false);
             TasseEmpty.SetActive(false);
+            Ananas.SetActive(false);
+            APizza.SetActive(false);
             carrying = false;
             carryFrozen = false;
             carryTeller = false;
             carryPizza = false;
             carryTasseEmpty = false;
             carryTasseFull = false;
+            carryAnanas = false;
+            carryAPizza = false;
         }
     }
 }

@@ -20,6 +20,12 @@ TagManager:
   - TasseMaker
   - CoffeeRecipe
   - PizzaRecipe
+  - Ananas
+  - AnanasCutted1
+  - AnanasCutted2
+  - APizza
+  - AnanasBox
+  - Brett
   layers:
   - Default
   - TransparentFX
