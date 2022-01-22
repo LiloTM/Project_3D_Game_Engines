@@ -29,6 +29,7 @@ TagManager:
   - FridgeHuhn
   - huhnFrozen
   - huhnRdy
+  - Ausgabe
   layers:
   - Default
   - TransparentFX

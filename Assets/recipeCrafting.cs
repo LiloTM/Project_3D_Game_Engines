@@ -84,6 +84,7 @@ public class recipeCrafting : MonoBehaviour
         if(cookingSliderAnanas.gameObject.activeSelf){
             cookingSliderAnanas.value = cookingSliderAnanas.value + 2;
         }
+        
 
         if(cookingSliderAnanas.value > 250){
             AnanasCutted1.SetActive(false);
@@ -122,6 +123,7 @@ public class recipeCrafting : MonoBehaviour
         //################################################################
         // craft stations starting
         if (other.CompareTag("Brett") && carryAnanas == true){
+            
             Ananas.SetActive(false);
             AnanasCutted1.SetActive(true);
             cookingSliderAnanas.gameObject.SetActive(true);
@@ -193,6 +195,10 @@ public class recipeCrafting : MonoBehaviour
         //################################################################
         // trashbin
         if(other.CompareTag("Trash")){
+            ausgabeCall();
+        }
+    }
+    public void ausgabeCall(){
             pizzaFrozen.SetActive(false);
             pizzaRdy.SetActive(false);
             tellerEmpty.SetActive(false);
@@ -212,6 +218,5 @@ public class recipeCrafting : MonoBehaviour
             carryAPizza = false;
             carryHuhnFrozen = false;
             carryHuhnRdy = false;
-        }
     }
 }
