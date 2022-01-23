@@ -11,6 +11,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] float rotationSpeed;
     private Vector2 movementInput;
     private Controls controls;
+    //private recipeCrafting r;
     
     private void Awake()
     {
@@ -29,14 +30,13 @@ public class PlayerControler : MonoBehaviour
 
     private void Start()
     {
-        
+        //r = GetComponent<recipeCrafting>();
     }
 
     void Update()
     {
-        if (controls.Gameplay.Action.triggered) {
-            PlayerInteraction();
-        }
+        //PlayerInteraction();
+
         movementInput = controls.Gameplay.Move.ReadValue<Vector2>();
         PlayerMovement();
     }
@@ -57,8 +57,15 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-    void PlayerInteraction()
-    { 
-    
-    }
+    /*void PlayerInteraction()
+    {
+        if (controls.Gameplay.Action.triggered)
+        {
+            r.SetTrue();
+            Debug.Log("Knopf");
+        }
+        else {
+            r.SetFalse();
+        }
+    }*/
 }
