@@ -10,9 +10,34 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float rotationSpeed;
     private Vector2 movementInput;
+    private Controls controls;
+    
+    private void Awake()
+    {
+        controls = new Controls();
+    }
+
+    private void OnEnable()
+    {
+        controls.Enable();
+    }
+
+    private void OnDisable()
+    {
+        controls.Disable();
+    }
+
+    private void Start()
+    {
+        
+    }
 
     void Update()
     {
+        if (controls.Gameplay.Action.triggered) {
+            PlayerInteraction();
+        }
+        movementInput = controls.Gameplay.Move.ReadValue<Vector2>();
         PlayerMovement();
     }
 
@@ -32,8 +57,8 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-    public void OnMove(InputAction.CallbackContext ctx)
-    {
-        movementInput = ctx.ReadValue<Vector2>();
+    void PlayerInteraction()
+    { 
+    
     }
 }
