@@ -30,6 +30,9 @@ TagManager:
   - huhnFrozen
   - huhnRdy
   - Ausgabe
+  - UI_Help
+
+
   layers:
   - Default
   - TransparentFX
