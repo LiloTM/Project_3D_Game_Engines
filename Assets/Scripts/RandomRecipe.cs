@@ -6,6 +6,7 @@ public class RandomRecipe : MonoBehaviour
 {
     int random;
     int RecipeNumber = 0;
+    int highestRecipeNumber = 8;
     float counter;
     public float timeRemaining = 100;
     public Transform Kaffee;
@@ -33,11 +34,14 @@ public class RandomRecipe : MonoBehaviour
 
             Debug.Log(random + " " + timeRemaining);
 
-            switch(random){
-                case 1: drawCoffee(); break;
-                case 2: drawPizza(); break;
+            if(RecipeNumber < highestRecipeNumber){
+                switch(random){
+                    case 1: drawRecipe(Kaffee); break;
+                    case 2: drawRecipe(Pizza); break;
+                }      
+                RecipeNumber++;
             }
-            RecipeNumber++;
+            
         }
     }
 
@@ -46,19 +50,26 @@ public class RandomRecipe : MonoBehaviour
         if(random<50) {random = 1;} else {random = 2;}
     }
 
-//TODO: REFACTOR THIS LILO!!
-    void drawCoffee(){
-        Transform newCoffee = Instantiate (Kaffee, UI);     
-        newCoffee.transform.position = newCoffee.position + new Vector3(RecipeNumber*180,0,0);
-        allRecipes.Add(newCoffee);
+
+    void drawRecipe(Transform newRecipeItem){
+        Transform newRecipe = Instantiate (newRecipeItem, UI);     
+        newRecipe.transform.position = newRecipe.position + new Vector3(RecipeNumber*180,0,0);
+        allRecipes.Add(newRecipe);
     }
 
-    void drawPizza(){
-        Transform newPizza = Instantiate (Pizza, UI);
-        newPizza.transform.position = newPizza.position + new Vector3(RecipeNumber*180,0,0);
-        allRecipes.Add(newPizza);
+    public void destroyRecipe(string tag){
+        var checker = false;
+        foreach(Transform item in allRecipes){
+            if(item.CompareTag(tag) && checker==false){
+                Destroy(item.gameObject);
+                checker = true;
+            }
+            if(checker == true) item.transform.position = item.position - new Vector3(180,0,0); 
+        }
+        RecipeNumber--;
     }
 
+//TODO: SUCCESSFULLY REFACTORED, CHECK IF CAN GET DELETED
     public void destroyCoffeeRecipe() {
         var checker = false;
         foreach(Transform item in allRecipes){
