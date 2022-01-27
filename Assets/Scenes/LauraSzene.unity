@@ -1986,6 +1986,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   t: 60
   timerText: {fileID: 376381766}
+--- !u!114 &411740257 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1610496187861777188, guid: 91f827caeb528ba4cb5e2d488658938c, type: 3}
+  m_PrefabInstance: {fileID: 570593713389554953}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc5b99d111f94a248a5c6fb1de7e76ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &451972389
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6592,7 +6603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 1070243275}
   randomRecipe: {fileID: 1169632988}
-  recipeCrafting: {fileID: 0}
+  recipeCrafting: {fileID: 411740257}
 --- !u!65 &1522513480
 BoxCollider:
   m_ObjectHideFlags: 0

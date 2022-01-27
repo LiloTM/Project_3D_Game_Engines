@@ -33,7 +33,6 @@ public class RandomRecipe : MonoBehaviour
             giveRandom();
 
             Debug.Log(random + " " + timeRemaining);
-
             if(RecipeNumber < highestRecipeNumber){
                 switch(random){
                     case 1: drawRecipe(Kaffee); break;
@@ -57,41 +56,36 @@ public class RandomRecipe : MonoBehaviour
         allRecipes.Add(newRecipe);
     }
 
-    public void destroyRecipe(string tag){
+    public bool isRecipeThere(string tag){
         var checker = false;
         foreach(Transform item in allRecipes){
             if(item.CompareTag(tag) && checker==false){
-                Destroy(item.gameObject);
                 checker = true;
             }
-            if(checker == true) item.transform.position = item.position - new Vector3(180,0,0); 
+            if(checker == true) break; 
         }
-        RecipeNumber--;
+        return checker;
     }
 
-//TODO: SUCCESSFULLY REFACTORED, CHECK IF CAN GET DELETED
-    public void destroyCoffeeRecipe() {
+    public void destroyRecipe(string tag){
         var checker = false;
+        int index = 10000;
         foreach(Transform item in allRecipes){
-            if(item.CompareTag("CoffeeRecipe") && checker==false){
-                Destroy(item.gameObject);
+            index = allRecipes.IndexOf(item);
+            if(item.CompareTag(tag) && checker==false){
+                Transform clone = allRecipes[index];
+                allRecipes.RemoveAt(index);
+                Destroy(clone.gameObject);
                 checker = true;
+                break;
             }
-            if(checker == true) item.transform.position = item.position - new Vector3(180,0,0); 
         }
         RecipeNumber--;
-    }
-
-    public void destroyPizzaRecipe() {
-        var checker = false;
-        foreach(Transform item in allRecipes){
-            if(item.CompareTag("PizzaRecipe") && checker==false){
-                Destroy(item.gameObject);
-                checker = true;
+        if(checker == true && index != 10000) {
+            for(int i = index; i<RecipeNumber;i++){
+                allRecipes[i].transform.position = allRecipes[i].position - new Vector3(180,0,0); 
             }
-            if(checker == true) item.transform.position = item.position - new Vector3(180,0,0);
         }
-        RecipeNumber--;
     }
-
+    
 }
