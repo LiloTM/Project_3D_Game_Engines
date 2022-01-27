@@ -1963,7 +1963,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: '
+  m_Text: Timer
 --- !u!222 &376381767
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5399,8 +5399,8 @@ MonoBehaviour:
   timeRemaining: 100
   Kaffee: {fileID: 6809413623365133763, guid: 048a1b89f8423f04cacf735c06a0eb75, type: 3}
   Pizza: {fileID: 977175255772490389, guid: 610faa427b4338946bdb66301ce13104, type: 3}
-  allRecipes: []
   UI: {fileID: 698322880}
+  allRecipes: []
 --- !u!4 &1169632989
 Transform:
   m_ObjectHideFlags: 0

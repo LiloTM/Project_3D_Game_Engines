@@ -8,11 +8,14 @@ public class RandomRecipe : MonoBehaviour
     int RecipeNumber = 0;
     int highestRecipeNumber = 8;
     float counter;
+    private Vector3 RecipePosition;
+    bool flyInChecker;
     public float timeRemaining = 100;
+
     public Transform Kaffee;
     public Transform Pizza;
-    public List<Transform> allRecipes;
     public Transform UI;
+    public List<Transform> allRecipes;
 
     void Start()
     {
@@ -31,7 +34,7 @@ public class RandomRecipe : MonoBehaviour
         if(timeRemaining <= counter-10) {
             counter -= 10;
             giveRandom();
-
+            flyInChecker = true;
             Debug.Log(random + " " + timeRemaining);
             if(RecipeNumber < highestRecipeNumber){
                 switch(random){
@@ -42,7 +45,14 @@ public class RandomRecipe : MonoBehaviour
             }
             
         }
+        
+        //fly in Recipe
+        if(allRecipes.Count != 0 && flyInChecker==true && allRecipes[allRecipes.Count-1].transform.position != RecipePosition){
+            allRecipes[RecipeNumber-1].transform.position = allRecipes[RecipeNumber-1].transform.position + new Vector3(-4,0,0);
+        }
+        if(allRecipes.Count != 0 && allRecipes[allRecipes.Count-1].transform.position == RecipePosition) flyInChecker = false;
     }
+
 
     void giveRandom(){
         random = Random.Range(1, 100);
@@ -52,7 +62,10 @@ public class RandomRecipe : MonoBehaviour
 
     void drawRecipe(Transform newRecipeItem){
         Transform newRecipe = Instantiate (newRecipeItem, UI);     
-        newRecipe.transform.position = newRecipe.position + new Vector3(RecipeNumber*180,0,0);
+        //newRecipe.transform.position = newRecipe.position + new Vector3(RecipeNumber*180,0,0);
+        RecipePosition = newRecipe.position + new Vector3(RecipeNumber*180,0,0);
+        newRecipe.transform.position = newRecipe.position + new Vector3(1900,0,0);
+        
         allRecipes.Add(newRecipe);
     }
 
