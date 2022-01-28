@@ -18,5 +18,16 @@ public class Score : MonoBehaviour
         score += points;
         scoreText.text = "Score: " + score;
     }
+    public void decreaseScore(int points) {
+        score -= points;
+        scoreText.text = "Score: " + score;
+    }
+    public void setZero(){
+        score = 0;
+         scoreText.text = "Score: " + score;
+    } 
+    public int getScore(){
+        return score;
+    }
     
 }

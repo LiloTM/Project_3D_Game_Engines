@@ -27,7 +27,10 @@ public class recipeCrafting : MonoBehaviour
     bool carrying, carryFrozen, carryTeller, carryPizza, carryTasseEmpty, carryTasseFull, cupMaker;
     bool carryAnanas, carryAPizza, carryHuhnFrozen, carryHuhnRdy, pizzamaking, huhnmaking;
 
+    int blubscore;
+
     private Controls controls;
+    public Score score;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,6 +77,8 @@ public class recipeCrafting : MonoBehaviour
         pizzamaking = false;
         huhnmaking = false;
 
+        blubscore = 0;
+
         //knopfdruck = false;
     }
     private void Awake()
@@ -110,6 +115,7 @@ public class recipeCrafting : MonoBehaviour
             AnanasCutted2.SetActive(true);
         }
         
+        blubscore = score.getScore();
     }
 
     /*public void SetTrue() 
@@ -191,7 +197,7 @@ public class recipeCrafting : MonoBehaviour
             }
             //################################################################
             // craft stations finished
-            if (cookingSliderAnanas.value == 500 && other.CompareTag("Brett") && carryPizza == true)
+            if (cookingSliderAnanas.value == 750 && other.CompareTag("Brett") && carryPizza == true)
             {
                 APizza.SetActive(true);
                 cookingSliderAnanas.gameObject.SetActive(false);
@@ -201,7 +207,7 @@ public class recipeCrafting : MonoBehaviour
                 carryAPizza = true;
                 cookingSliderAnanas.value = 0;
             }
-            if (cookingSliderHerd.value == 500 && other.CompareTag("Herd") && carryTeller == true && pizzamaking == true)
+            if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && pizzamaking == true)
             {
                 pizzaRdy.SetActive(true);
                 cookingSliderHerd.gameObject.SetActive(false);
@@ -212,7 +218,7 @@ public class recipeCrafting : MonoBehaviour
                 cookingSliderHerd.value = 0;
                 pizzamaking = false;
             }
-            if (cookingSliderHerd.value == 500 && other.CompareTag("Herd") && carryTeller == true && huhnmaking == true)
+            if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && huhnmaking == true)
             {
                 huhnRdy.SetActive(true);
                 cookingSliderHerd.gameObject.SetActive(false);
@@ -223,7 +229,7 @@ public class recipeCrafting : MonoBehaviour
                 cookingSliderHerd.value = 0;
                 huhnmaking = false;
             }
-            if (cookingSliderKaffee.value == 500 && other.CompareTag("Coffee") && carrying == false && cupMaker == true)
+            if (cookingSliderKaffee.value == 750 && other.CompareTag("Coffee") && carrying == false && cupMaker == true)
             {
                 TasseFull.SetActive(true);
                 cookingSliderKaffee.gameObject.SetActive(false);
@@ -240,6 +246,14 @@ public class recipeCrafting : MonoBehaviour
                 ausgabeCall();
             }
     }
+    private void OnTriggerEnter(Collider other) {
+                if (other.CompareTag("Trash") && blubscore > 9){
+                score.decreaseScore(10);
+                }
+                if (other.CompareTag("Trash") && blubscore < 10){
+                score.setZero();
+                }
+            }
     public void ausgabeCall(){
             pizzaFrozen.SetActive(false);
             pizzaRdy.SetActive(false);
