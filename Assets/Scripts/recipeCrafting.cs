@@ -21,37 +21,62 @@ public class recipeCrafting : MonoBehaviour
 
     //private bool knopfdruck;
 
-    public Slider cookingSliderHerd;
-    public Slider cookingSliderKaffee;
-    public Slider cookingSliderAnanas;
+    private Slider cookingSliderHerd;
+    private Slider cookingSliderKaffee;
+    private Slider cookingSliderAnanas;
     bool carrying, carryFrozen, carryTeller, carryPizza, carryTasseEmpty, carryTasseFull, cupMaker;
     bool carryAnanas, carryAPizza, carryHuhnFrozen, carryHuhnRdy, pizzamaking, huhnmaking;
 
     int blubscore;
 
     private Controls controls;
-    public Score score;
+    private Score score;
     // Start is called before the first frame update
     void Start()
     {
+        Slider[] activeAndInactive = GameObject.FindObjectsOfType<Slider>(true);
+
+        AudioSource[] activeAndInactive2 = GameObject.FindObjectsOfType<AudioSource>(true);
+
+        Debug.Log("" + activeAndInactive2[0] + activeAndInactive2[1] + activeAndInactive2[2] + activeAndInactive2[3] + activeAndInactive2[4] + activeAndInactive2[5]);
+
+        cookingSliderHerd = activeAndInactive2[4].GetComponent<Slider>(); 
+        if(cookingSliderHerd.gameObject.activeSelf){
+            cookingSliderHerd.gameObject.SetActive(false);
+        }
+        cookingSliderKaffee = activeAndInactive2[5].GetComponent<Slider>(); 
+        if(cookingSliderKaffee.gameObject.activeSelf){
+            cookingSliderKaffee.gameObject.SetActive(false);
+        }
+        cookingSliderAnanas = activeAndInactive2[3].GetComponent<Slider>(); 
+        if(cookingSliderAnanas.gameObject.activeSelf){
+            cookingSliderAnanas.gameObject.SetActive(false);
+        }
+
+        score = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Score>();
+
         pizzaFrozen = GameObject.FindGameObjectWithTag("PizzaFrozen");
         pizzaFrozen.SetActive(false);
         pizzaRdy = GameObject.FindGameObjectWithTag("PizzaRdy");
         pizzaRdy.SetActive(false);
-        tellerEmpty = GameObject.FindGameObjectWithTag("Teller");
+        tellerEmpty = GameObject.FindGameObjectWithTag("TellerEmpty");
         tellerEmpty.SetActive(false);
         TasseFull = GameObject.FindGameObjectWithTag("TasseFull");
         TasseFull.SetActive(false);
         TasseEmpty = GameObject.FindGameObjectWithTag("TasseEmpty");
         TasseEmpty.SetActive(false);
-        TasseMaker = GameObject.FindGameObjectWithTag("TasseMaker");
+
+        TasseMaker = activeAndInactive2[2].gameObject;
         TasseMaker.SetActive(false);
+
         Ananas = GameObject.FindGameObjectWithTag("Ananas");
         Ananas.SetActive(false);
-        AnanasCutted1 = GameObject.FindGameObjectWithTag("AnanasCutted1");
+
+        AnanasCutted1 = activeAndInactive2[1].gameObject;
         AnanasCutted1.SetActive(false);
-        AnanasCutted2 = GameObject.FindGameObjectWithTag("AnanasCutted2");
+        AnanasCutted2 = activeAndInactive2[0].gameObject;
         AnanasCutted2.SetActive(false);
+
         APizza = GameObject.FindGameObjectWithTag("APizza");
         APizza.SetActive(false);
         huhnFrozen = GameObject.FindGameObjectWithTag("huhnFrozen");
@@ -163,7 +188,6 @@ public class recipeCrafting : MonoBehaviour
             // craft stations starting
             if (other.CompareTag("Brett") && carryAnanas == true)
             {
-
                 Ananas.SetActive(false);
                 AnanasCutted1.SetActive(true);
                 cookingSliderAnanas.gameObject.SetActive(true);
@@ -229,7 +253,7 @@ public class recipeCrafting : MonoBehaviour
                 cookingSliderHerd.value = 0;
                 huhnmaking = false;
             }
-            if (cookingSliderKaffee.value == 750 && other.CompareTag("Coffee") && carrying == false && cupMaker == true)
+            if (cookingSliderKaffee.value == 750 && other.CompareTag("Coffee") && carrying == false && TasseMaker.gameObject.activeSelf)
             {
                 TasseFull.SetActive(true);
                 cookingSliderKaffee.gameObject.SetActive(false);

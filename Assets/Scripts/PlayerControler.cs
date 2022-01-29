@@ -13,6 +13,7 @@ public class PlayerControler : MonoBehaviour
     private Controls controls;
     //private recipeCrafting r;
     
+    /*
     private void Awake()
     {
         controls = new Controls();
@@ -27,6 +28,7 @@ public class PlayerControler : MonoBehaviour
     {
         controls.Disable();
     }
+    */
 
     private void Start()
     {
@@ -37,7 +39,7 @@ public class PlayerControler : MonoBehaviour
     {
         //PlayerInteraction();
 
-        movementInput = controls.Gameplay.Move.ReadValue<Vector2>();
+        //movementInput = controls.Gameplay.Move.ReadValue<Vector2>();
         PlayerMovement();
     }
 
@@ -56,6 +58,8 @@ public class PlayerControler : MonoBehaviour
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
     }
+
+    public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
 
     /*void PlayerInteraction()
     {
