@@ -35,10 +35,8 @@ public class recipeCrafting : MonoBehaviour
     void Start()
     {
         Slider[] activeAndInactive = GameObject.FindObjectsOfType<Slider>(true);
-
         AudioSource[] activeAndInactive2 = GameObject.FindObjectsOfType<AudioSource>(true);
-
-        Debug.Log("" + activeAndInactive2[0] + activeAndInactive2[1] + activeAndInactive2[2] + activeAndInactive2[3] + activeAndInactive2[4] + activeAndInactive2[5]);
+        //Debug.Log("" + activeAndInactive2[0] + activeAndInactive2[1] + activeAndInactive2[2] + activeAndInactive2[3] + activeAndInactive2[4] + activeAndInactive2[5]);
 
         cookingSliderHerd = activeAndInactive2[4].GetComponent<Slider>(); 
         if(cookingSliderHerd.gameObject.activeSelf){
