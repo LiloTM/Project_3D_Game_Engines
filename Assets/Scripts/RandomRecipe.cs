@@ -6,12 +6,16 @@ public class RandomRecipe : MonoBehaviour
 {
     int random;
     int RecipeNumber = 0;
+    int highestRecipeNumber = 8;
     float counter;
+    private Vector3 RecipePosition;
+    bool flyInChecker;
     public float timeRemaining = 100;
+
     public Transform Kaffee;
     public Transform Pizza;
-    public List<Transform> allRecipes;
     public Transform UI;
+    public List<Transform> allRecipes;
 
     void Start()
     {
@@ -30,57 +34,71 @@ public class RandomRecipe : MonoBehaviour
         if(timeRemaining <= counter-10) {
             counter -= 10;
             giveRandom();
-
+            flyInChecker = true;
             Debug.Log(random + " " + timeRemaining);
-
-            switch(random){
-                case 1: drawCoffee(); break;
-                case 2: drawPizza(); break;
+            if(RecipeNumber < highestRecipeNumber){
+                switch(random){
+                    case 1: drawRecipe(Kaffee); break;
+                    case 2: drawRecipe(Pizza); break;
+                }      
+                RecipeNumber++;
             }
-            RecipeNumber++;
+            
         }
+        
+        //fly in Recipe
+        if(allRecipes.Count != 0 && flyInChecker==true && allRecipes[allRecipes.Count-1].transform.position != RecipePosition){
+            allRecipes[RecipeNumber-1].transform.position = allRecipes[RecipeNumber-1].transform.position + new Vector3(-4,0,0);
+        }
+        if(allRecipes.Count != 0 && allRecipes[allRecipes.Count-1].transform.position == RecipePosition) flyInChecker = false;
     }
+
 
     void giveRandom(){
         random = Random.Range(1, 100);
         if(random<50) {random = 1;} else {random = 2;}
     }
 
-//TODO: REFACTOR THIS LILO!!
-    void drawCoffee(){
-        Transform newCoffee = Instantiate (Kaffee, UI);     
-        newCoffee.transform.position = newCoffee.position + new Vector3(RecipeNumber*180,0,0);
-        allRecipes.Add(newCoffee);
+
+    void drawRecipe(Transform newRecipeItem){
+        Transform newRecipe = Instantiate (newRecipeItem, UI);     
+        //newRecipe.transform.position = newRecipe.position + new Vector3(RecipeNumber*180,0,0);
+        RecipePosition = newRecipe.position + new Vector3(RecipeNumber*180,0,0);
+        newRecipe.transform.position = newRecipe.position + new Vector3(1900,0,0);
+        
+        allRecipes.Add(newRecipe);
     }
 
-    void drawPizza(){
-        Transform newPizza = Instantiate (Pizza, UI);
-        newPizza.transform.position = newPizza.position + new Vector3(RecipeNumber*180,0,0);
-        allRecipes.Add(newPizza);
-    }
-
-    public void destroyCoffeeRecipe() {
+    public bool isRecipeThere(string tag){
         var checker = false;
         foreach(Transform item in allRecipes){
-            if(item.CompareTag("CoffeeRecipe") && checker==false){
-                Destroy(item.gameObject);
+            if(item.CompareTag(tag) && checker==false){
                 checker = true;
             }
-            if(checker == true) item.transform.position = item.position - new Vector3(180,0,0); 
+            if(checker == true) break; 
         }
-        RecipeNumber--;
+        return checker;
     }
 
-    public void destroyPizzaRecipe() {
+    public void destroyRecipe(string tag){
         var checker = false;
+        int index = 10000;
         foreach(Transform item in allRecipes){
-            if(item.CompareTag("PizzaRecipe") && checker==false){
-                Destroy(item.gameObject);
+            index = allRecipes.IndexOf(item);
+            if(item.CompareTag(tag) && checker==false){
+                Transform clone = allRecipes[index];
+                allRecipes.RemoveAt(index);
+                Destroy(clone.gameObject);
                 checker = true;
+                break;
             }
-            if(checker == true) item.transform.position = item.position - new Vector3(180,0,0);
         }
         RecipeNumber--;
+        if(checker == true && index != 10000) {
+            for(int i = index; i<RecipeNumber;i++){
+                allRecipes[i].transform.position = allRecipes[i].position - new Vector3(180,0,0); 
+            }
+        }
     }
-
+    
 }

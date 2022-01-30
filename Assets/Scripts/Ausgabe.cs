@@ -12,17 +12,6 @@ public class Ausgabe : MonoBehaviour
     private GameObject APizza;
     private GameObject TasseFull;
     private GameObject huhnRdy;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider other)
     {
@@ -31,29 +20,34 @@ public class Ausgabe : MonoBehaviour
         APizza = GameObject.FindGameObjectWithTag("APizza");
         huhnRdy = GameObject.FindGameObjectWithTag("huhnRdy");
 
-        if(other.gameObject.CompareTag("TasseFull") /* && it's needed*/){
-            score.increaseScore(5); 
-            randomRecipe.destroyCoffeeRecipe();         
-            recipeCrafting.ausgabeCall();
+        if(other.gameObject.CompareTag("TasseFull")) {         
+            bool isRecipe = randomRecipe.isRecipeThere("CoffeeRecipe");
+            if(isRecipe){
+                score.increaseScore(5); 
+                randomRecipe.destroyRecipe("CoffeeRecipe");
+                recipeCrafting.ausgabeCall();
+            }
         }
 
-        if(other.gameObject.CompareTag("PizzaRdy") /* && it's needed*/){
-            Debug.Log("Hallo vor score");
-            score.increaseScore(10);   
-            randomRecipe.destroyPizzaRecipe();
-            Debug.Log("Hallo nach Score");
-            recipeCrafting.ausgabeCall();
+        if(other.gameObject.CompareTag("PizzaRdy")){
+            bool isRecipe = randomRecipe.isRecipeThere("PizzaRecipe");
+            if(isRecipe){
+                score.increaseScore(10);   
+                randomRecipe.destroyRecipe("PizzaRecipe");
+                recipeCrafting.ausgabeCall();
+            }
         }
 
+// TODO: add the if needed like above
         if(other.gameObject.CompareTag("APizza") /* && it's needed*/){
             score.increaseScore(10);   
-            randomRecipe.destroyPizzaRecipe();
+            randomRecipe.destroyRecipe("PizzaRecipe");
             recipeCrafting.ausgabeCall();
         }
 
         if(other.gameObject.CompareTag("huhnRdy") /* && it's needed*/){
             score.increaseScore(10);   
-            randomRecipe.destroyPizzaRecipe();
+            randomRecipe.destroyRecipe("PizzaRecipe");
             recipeCrafting.ausgabeCall();
         }
     }
