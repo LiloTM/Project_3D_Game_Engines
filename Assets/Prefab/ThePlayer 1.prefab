@@ -1497,7 +1497,19 @@ MonoBehaviour:
     m_ActionId: 1de2ca77-962e-491c-af71-e063c2f44e3e
     m_ActionName: Gameplay/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1714769098586044476}
+        m_TargetAssemblyTypeName: recipeCrafting, Assembly-CSharp
+        m_MethodName: OnAction
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: df1e083d-e3d8-4841-aa58-5ff1728a54d0
     m_ActionName: Gameplay/Action[/Keyboard/e]
   m_NeverAutoSwitchControlSchemes: 0

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+
 
 
 public class recipeCrafting : MonoBehaviour
@@ -26,6 +28,7 @@ public class recipeCrafting : MonoBehaviour
     private Slider cookingSliderAnanas;
     bool carrying, carryFrozen, carryTeller, carryPizza, carryTasseEmpty, carryTasseFull, cupMaker;
     bool carryAnanas, carryAPizza, carryHuhnFrozen, carryHuhnRdy, pizzamaking, huhnmaking;
+    bool actionInput;
 
     private microwaveBoolean micro;
 
@@ -164,31 +167,31 @@ public class recipeCrafting : MonoBehaviour
 
     private void OnTriggerStay(Collider other) {
         //Basic Items 
-            if (other.CompareTag("Fridge") && carrying == false)
+            if (other.CompareTag("Fridge") && carrying == false && actionInput)
             {
                 pizzaFrozen.SetActive(true);
                 carryFrozen = true;
                 carrying = true;
             }
-            if (other.CompareTag("FridgeHuhn") && carrying == false)
+            if (other.CompareTag("FridgeHuhn") && carrying == false && actionInput)
             {
                 huhnFrozen.SetActive(true);
                 carryHuhnFrozen = true;
                 carrying = true;
             }
-            if (other.CompareTag("AnanasBox") && carrying == false)
+            if (other.CompareTag("AnanasBox") && carrying == false && actionInput)
             {
                 Ananas.SetActive(true);
                 carryAnanas = true;
                 carrying = true;
             }
-            if (other.CompareTag("Teller") && carrying == false)
+            if (other.CompareTag("Teller") && carrying == false && actionInput)
             {
                 tellerEmpty.SetActive(true);
                 carryTeller = true;
                 carrying = true;
             }
-            if (other.CompareTag("Tasse") && carrying == false)
+            if (other.CompareTag("Tasse") && carrying == false && actionInput)
             {
                 TasseEmpty.SetActive(true);
                 carryTasseEmpty = true;
@@ -196,7 +199,7 @@ public class recipeCrafting : MonoBehaviour
             }
             //################################################################
             // craft stations starting
-            if (other.CompareTag("Brett") && carryAnanas == true)
+            if (other.CompareTag("Brett") && carryAnanas == true && actionInput)
             {
                 Ananas.SetActive(false);
                 AnanasCutted1.SetActive(true);
@@ -204,7 +207,7 @@ public class recipeCrafting : MonoBehaviour
                 carryAnanas = false;
                 carrying = false;
             }
-            if (other.CompareTag("Herd") && carryFrozen == true && cookingSliderHerd.value < 2 && micro.getMaking() == false)
+            if (other.CompareTag("Herd") && carryFrozen == true && cookingSliderHerd.value < 2 && micro.getMaking() == false && actionInput)
             {
                 pizzaFrozen.SetActive(false);
                 cookingSliderHerd.gameObject.SetActive(true);
@@ -212,7 +215,7 @@ public class recipeCrafting : MonoBehaviour
                 carrying = false;
                 micro.setPizza(true);
             }
-            if (other.CompareTag("Herd") && carryHuhnFrozen == true && cookingSliderHerd.value < 2 && micro.getMaking() == false)
+            if (other.CompareTag("Herd") && carryHuhnFrozen == true && cookingSliderHerd.value < 2 && micro.getMaking() == false && actionInput)
             {
                 huhnFrozen.SetActive(false);
                 cookingSliderHerd.gameObject.SetActive(true);
@@ -220,7 +223,7 @@ public class recipeCrafting : MonoBehaviour
                 carrying = false;
                 micro.setChicken(true);
             }
-            if (other.CompareTag("Coffee") && carryTasseEmpty == true && cupMaker == false)
+            if (other.CompareTag("Coffee") && carryTasseEmpty == true && cupMaker == false && actionInput)
             {
                 TasseEmpty.SetActive(false);
                 cookingSliderKaffee.gameObject.SetActive(true);
@@ -231,7 +234,7 @@ public class recipeCrafting : MonoBehaviour
             }
             //################################################################
             // craft stations finished
-            if (cookingSliderAnanas.value == 750 && other.CompareTag("Brett") && carryPizza == true)
+            if (cookingSliderAnanas.value == 750 && other.CompareTag("Brett") && carryPizza == true && actionInput)
             {
                 APizza.SetActive(true);
                 cookingSliderAnanas.gameObject.SetActive(false);
@@ -241,7 +244,7 @@ public class recipeCrafting : MonoBehaviour
                 carryAPizza = true;
                 cookingSliderAnanas.value = 0;
             }
-            if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getPizza() == true)
+            if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getPizza() == true && actionInput)
             {
                 pizzaRdy.SetActive(true);
                 cookingSliderHerd.gameObject.SetActive(false);
@@ -252,7 +255,7 @@ public class recipeCrafting : MonoBehaviour
                 cookingSliderHerd.value = 0;
                 micro.setPizza(false);
             }
-            if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getChicken() == true)
+            if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getChicken() == true && actionInput)
             {
                 huhnRdy.SetActive(true);
                 cookingSliderHerd.gameObject.SetActive(false);
@@ -263,7 +266,7 @@ public class recipeCrafting : MonoBehaviour
                 cookingSliderHerd.value = 0;
                 micro.setChicken(false);
             }
-            if (cookingSliderKaffee.value == 750 && other.CompareTag("Coffee") && carrying == false && TasseMaker.gameObject.activeSelf)
+            if (cookingSliderKaffee.value == 750 && other.CompareTag("Coffee") && carrying == false && TasseMaker.gameObject.activeSelf && actionInput)
             {
                 TasseFull.SetActive(true);
                 cookingSliderKaffee.gameObject.SetActive(false);
@@ -275,16 +278,16 @@ public class recipeCrafting : MonoBehaviour
             }
             //################################################################
             // trashbin
-            if (other.CompareTag("Trash"))
+            if (other.CompareTag("Trash") && actionInput)
             {
                 ausgabeCall();
             }
     }
     private void OnTriggerEnter(Collider other) {
-                if (other.CompareTag("Trash") && blubscore > 9){
+                if (other.CompareTag("Trash") && blubscore > 9 && actionInput){
                 score.decreaseScore(10);
                 }
-                if (other.CompareTag("Trash") && blubscore < 10){
+                if (other.CompareTag("Trash") && blubscore < 10 && actionInput){
                 score.setZero();
                 }
             }
@@ -398,4 +401,6 @@ public class recipeCrafting : MonoBehaviour
             AnanasCutted2 = activeAndInactive2[5].gameObject;
         }
     }
+
+    public void OnAction(InputAction.CallbackContext rtx) => actionInput = rtx.ReadValueAsButton();
 }
