@@ -11,13 +11,14 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] float rotationSpeed;
     private Vector2 movementInput;
 
-    void Update()
-    {
+    private void Start(){
+    }
+
+    void Update(){
         PlayerMovement();
     }
 
-    void PlayerMovement()
-    {
+    void PlayerMovement(){
         float ver = movementInput.x;
         float hor = movementInput.y;
         Vector3 playerMovement = new Vector3(hor, 0f, -ver);
@@ -32,8 +33,5 @@ public class PlayerControler : MonoBehaviour
         }
     }
 
-    public void OnMove(InputAction.CallbackContext ctx)
-    {
-        movementInput = ctx.ReadValue<Vector2>();
-    }
+    public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
 }
