@@ -31,11 +31,14 @@ TagManager:
   - huhnRdy
   - Ausgabe
   - UI_Help
+  - UI_Rezepte
+  - UI_Steuerung
   - HerdSlider
   - KaffeeSlider
   - AnanasSlider
   - ScoreManager
   - TellerEmpty
+
   layers:
   - Default
   - TransparentFX

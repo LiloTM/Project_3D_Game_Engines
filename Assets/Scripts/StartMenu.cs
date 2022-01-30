@@ -8,6 +8,9 @@ public class StartMenu : MonoBehaviour
     GameObject menu;
     GameObject helpUI;
     GameObject settingsUI;
+    // Sprechblase UI
+    GameObject rezepteUI;
+    GameObject steuerungUI;
 
     GameObject musicON;
     GameObject musicOFF;
@@ -21,13 +24,19 @@ public class StartMenu : MonoBehaviour
         settingsUI = GameObject.FindGameObjectWithTag("UI_Settings");
         //musicON = GameObject.FindGameObjectWithTag("ON");
         //musicOFF = GameObject.FindGameObjectWithTag("OFF");
+        rezepteUI = GameObject.FindGameObjectWithTag("UI_Rezepte");
+        steuerungUI = GameObject.FindGameObjectWithTag("UI_Steuerung");
 
         menu.SetActive(true);
         helpUI.SetActive(false);
         settingsUI.SetActive(false);
+        rezepteUI.SetActive(false);
+        steuerungUI.SetActive(false);
 
         //sound = GetComponent<AudioSource>();
         //sound.Play();
+
+
     }
 
     void Update() {
@@ -50,6 +59,22 @@ public class StartMenu : MonoBehaviour
 
     public void CloseHelp(){
         helpUI.SetActive(false);
+        rezepteUI.SetActive(false);
+        steuerungUI.SetActive(false);
+    }
+
+    public void BackToHelp() {
+        helpUI.SetActive(true);
+        rezepteUI.SetActive(false);
+        steuerungUI.SetActive(false);
+    }
+
+    public void Steuerung() {
+        steuerungUI.SetActive(true);
+    }
+
+    public void Rezepte() {
+        rezepteUI.SetActive(true);
     }
 
     public void Quit() {
