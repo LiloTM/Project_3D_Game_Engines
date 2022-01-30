@@ -31,8 +31,8 @@ TagManager:
   - huhnRdy
   - Ausgabe
   - UI_Help
-
-
+  - UI_Rezepte
+  - UI_Steuerung
   layers:
   - Default
   - TransparentFX
