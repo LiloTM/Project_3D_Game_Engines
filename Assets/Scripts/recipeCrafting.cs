@@ -33,24 +33,32 @@ public class recipeCrafting : MonoBehaviour
 
     private Controls controls;
     private Score score;
+    AudioSource[] activeAndInactive2;
     // Start is called before the first frame update
     void Start()
     {
         micro = GameObject.FindGameObjectWithTag("Herd").GetComponent<microwaveBoolean>();
 
         Slider[] activeAndInactive = GameObject.FindObjectsOfType<Slider>(true);
-        AudioSource[] activeAndInactive2 = GameObject.FindObjectsOfType<AudioSource>(true);
+        activeAndInactive2 = GameObject.FindObjectsOfType<AudioSource>(true);
         Debug.Log("" + activeAndInactive2[0] + activeAndInactive2[1] + activeAndInactive2[2] + activeAndInactive2[3] + activeAndInactive2[4] + activeAndInactive2[5]);
 
-        cookingSliderHerd = activeAndInactive2[1].GetComponent<Slider>(); 
+        GameObject blub = activeAndInactive2[0].gameObject;
+        Debug.Log("" + blub);
+
+        sortArray();
+        Debug.Log("cookingSliderKaffee = " + cookingSliderKaffee);
+        Debug.Log("AnanasCutted1 = " + AnanasCutted1);
+
+        //cookingSliderHerd = activeAndInactive2[1].GetComponent<Slider>(); 
         if(cookingSliderHerd.gameObject.activeSelf){
             cookingSliderHerd.gameObject.SetActive(false);
         }
-        cookingSliderKaffee = activeAndInactive2[4].GetComponent<Slider>(); 
+        //cookingSliderKaffee = activeAndInactive2[4].GetComponent<Slider>(); 
         if(cookingSliderKaffee.gameObject.activeSelf){
             cookingSliderKaffee.gameObject.SetActive(false);
         }
-        cookingSliderAnanas = activeAndInactive2[0].GetComponent<Slider>(); 
+        //cookingSliderAnanas = activeAndInactive2[0].GetComponent<Slider>(); 
         if(cookingSliderAnanas.gameObject.activeSelf){
             cookingSliderAnanas.gameObject.SetActive(false);
         }
@@ -68,15 +76,15 @@ public class recipeCrafting : MonoBehaviour
         TasseEmpty = GameObject.FindGameObjectWithTag("TasseEmpty");
         TasseEmpty.SetActive(false);
 
-        TasseMaker = activeAndInactive2[3].gameObject;
+        //TasseMaker = activeAndInactive2[3].gameObject;
         TasseMaker.SetActive(false);
 
         Ananas = GameObject.FindGameObjectWithTag("Ananas");
         Ananas.SetActive(false);
 
-        AnanasCutted1 = activeAndInactive2[5].gameObject;
+        //AnanasCutted1 = activeAndInactive2[5].gameObject;
         AnanasCutted1.SetActive(false);
-        AnanasCutted2 = activeAndInactive2[2].gameObject;
+        //AnanasCutted2 = activeAndInactive2[2].gameObject;
         AnanasCutted2.SetActive(false);
 
         APizza = GameObject.FindGameObjectWithTag("APizza");
@@ -300,5 +308,94 @@ public class recipeCrafting : MonoBehaviour
             carryAPizza = false;
             carryHuhnFrozen = false;
             carryHuhnRdy = false;
+    }
+
+    void sortArray(){
+
+        //pls dont look at this
+
+        if(activeAndInactive2[0].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[0].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[0].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[0].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[0].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[0].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[0].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[0].gameObject;
+        }else if(activeAndInactive2[0].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[0].gameObject;
+        }else if(activeAndInactive2[0].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[0].gameObject;
+        }
+
+        if(activeAndInactive2[1].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[1].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[1].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[1].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[1].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[1].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[1].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[1].gameObject;
+        }else if(activeAndInactive2[1].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[1].gameObject;
+        }else if(activeAndInactive2[1].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[1].gameObject;
+        }
+
+        if(activeAndInactive2[2].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[2].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[2].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[2].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[2].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[2].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[2].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[2].gameObject;
+        }else if(activeAndInactive2[2].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[2].gameObject;
+        }else if(activeAndInactive2[2].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[2].gameObject;
+        }
+
+        if(activeAndInactive2[3].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[3].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[3].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[3].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[3].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[3].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[3].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[3].gameObject;
+        }else if(activeAndInactive2[3].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[3].gameObject;
+        }else if(activeAndInactive2[3].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[3].gameObject;
+        }
+
+        if(activeAndInactive2[4].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[4].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[4].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[4].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[4].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[4].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[4].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[4].gameObject;
+        }else if(activeAndInactive2[4].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[4].gameObject;
+        }else if(activeAndInactive2[4].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[4].gameObject;
+        }
+
+        if(activeAndInactive2[5].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[5].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[5].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[5].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[5].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[5].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[5].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[5].gameObject;
+        }else if(activeAndInactive2[5].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[5].gameObject;
+        }else if(activeAndInactive2[5].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[5].gameObject;
+        }
     }
 }
