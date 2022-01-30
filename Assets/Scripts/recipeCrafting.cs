@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+
 
 
 public class recipeCrafting : MonoBehaviour
@@ -21,34 +23,73 @@ public class recipeCrafting : MonoBehaviour
 
     //private bool knopfdruck;
 
-    public Slider cookingSliderHerd;
-    public Slider cookingSliderKaffee;
-    public Slider cookingSliderAnanas;
+    private Slider cookingSliderHerd;
+    private Slider cookingSliderKaffee;
+    private Slider cookingSliderAnanas;
     bool carrying, carryFrozen, carryTeller, carryPizza, carryTasseEmpty, carryTasseFull, cupMaker;
     bool carryAnanas, carryAPizza, carryHuhnFrozen, carryHuhnRdy, pizzamaking, huhnmaking;
+    bool actionInput;
+
+    private microwaveBoolean micro;
+
+    int blubscore;
 
     private Controls controls;
+    private Score score;
+    AudioSource[] activeAndInactive2;
     // Start is called before the first frame update
     void Start()
     {
+        micro = GameObject.FindGameObjectWithTag("Herd").GetComponent<microwaveBoolean>();
+
+        Slider[] activeAndInactive = GameObject.FindObjectsOfType<Slider>(true);
+        activeAndInactive2 = GameObject.FindObjectsOfType<AudioSource>(true);
+        Debug.Log("" + activeAndInactive2[0] + activeAndInactive2[1] + activeAndInactive2[2] + activeAndInactive2[3] + activeAndInactive2[4] + activeAndInactive2[5]);
+
+        GameObject blub = activeAndInactive2[0].gameObject;
+        Debug.Log("" + blub);
+
+        sortArray();
+        Debug.Log("cookingSliderKaffee = " + cookingSliderKaffee);
+        Debug.Log("AnanasCutted1 = " + AnanasCutted1);
+
+        //cookingSliderHerd = activeAndInactive2[1].GetComponent<Slider>(); 
+        if(cookingSliderHerd.gameObject.activeSelf){
+            cookingSliderHerd.gameObject.SetActive(false);
+        }
+        //cookingSliderKaffee = activeAndInactive2[4].GetComponent<Slider>(); 
+        if(cookingSliderKaffee.gameObject.activeSelf){
+            cookingSliderKaffee.gameObject.SetActive(false);
+        }
+        //cookingSliderAnanas = activeAndInactive2[0].GetComponent<Slider>(); 
+        if(cookingSliderAnanas.gameObject.activeSelf){
+            cookingSliderAnanas.gameObject.SetActive(false);
+        }
+
+        score = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Score>();
+
         pizzaFrozen = GameObject.FindGameObjectWithTag("PizzaFrozen");
         pizzaFrozen.SetActive(false);
         pizzaRdy = GameObject.FindGameObjectWithTag("PizzaRdy");
         pizzaRdy.SetActive(false);
-        tellerEmpty = GameObject.FindGameObjectWithTag("Teller");
+        tellerEmpty = GameObject.FindGameObjectWithTag("TellerEmpty");
         tellerEmpty.SetActive(false);
         TasseFull = GameObject.FindGameObjectWithTag("TasseFull");
         TasseFull.SetActive(false);
         TasseEmpty = GameObject.FindGameObjectWithTag("TasseEmpty");
         TasseEmpty.SetActive(false);
-        TasseMaker = GameObject.FindGameObjectWithTag("TasseMaker");
+
+        //TasseMaker = activeAndInactive2[3].gameObject;
         TasseMaker.SetActive(false);
+
         Ananas = GameObject.FindGameObjectWithTag("Ananas");
         Ananas.SetActive(false);
-        AnanasCutted1 = GameObject.FindGameObjectWithTag("AnanasCutted1");
+
+        //AnanasCutted1 = activeAndInactive2[5].gameObject;
         AnanasCutted1.SetActive(false);
-        AnanasCutted2 = GameObject.FindGameObjectWithTag("AnanasCutted2");
+        //AnanasCutted2 = activeAndInactive2[2].gameObject;
         AnanasCutted2.SetActive(false);
+
         APizza = GameObject.FindGameObjectWithTag("APizza");
         APizza.SetActive(false);
         huhnFrozen = GameObject.FindGameObjectWithTag("huhnFrozen");
@@ -73,6 +114,8 @@ public class recipeCrafting : MonoBehaviour
         carryHuhnRdy = false;
         pizzamaking = false;
         huhnmaking = false;
+
+        blubscore = 0;
 
         //knopfdruck = false;
     }
@@ -110,6 +153,7 @@ public class recipeCrafting : MonoBehaviour
             AnanasCutted2.SetActive(true);
         }
         
+        blubscore = score.getScore();
     }
 
     /*public void SetTrue() 
@@ -123,31 +167,31 @@ public class recipeCrafting : MonoBehaviour
 
     private void OnTriggerStay(Collider other) {
         //Basic Items 
-            if (other.CompareTag("Fridge") && carrying == false && controls.Gameplay.Action.triggered)
+            if (other.CompareTag("Fridge") && carrying == false && actionInput)
             {
                 pizzaFrozen.SetActive(true);
                 carryFrozen = true;
                 carrying = true;
             }
-            if (other.CompareTag("FridgeHuhn") && carrying == false)
+            if (other.CompareTag("FridgeHuhn") && carrying == false && actionInput)
             {
                 huhnFrozen.SetActive(true);
                 carryHuhnFrozen = true;
                 carrying = true;
             }
-            if (other.CompareTag("AnanasBox") && carrying == false)
+            if (other.CompareTag("AnanasBox") && carrying == false && actionInput)
             {
                 Ananas.SetActive(true);
                 carryAnanas = true;
                 carrying = true;
             }
-            if (other.CompareTag("Teller") && carrying == false)
+            if (other.CompareTag("Teller") && carrying == false && actionInput)
             {
                 tellerEmpty.SetActive(true);
                 carryTeller = true;
                 carrying = true;
             }
-            if (other.CompareTag("Tasse") && carrying == false)
+            if (other.CompareTag("Tasse") && carrying == false && actionInput)
             {
                 TasseEmpty.SetActive(true);
                 carryTasseEmpty = true;
@@ -155,32 +199,31 @@ public class recipeCrafting : MonoBehaviour
             }
             //################################################################
             // craft stations starting
-            if (other.CompareTag("Brett") && carryAnanas == true)
+            if (other.CompareTag("Brett") && carryAnanas == true && actionInput)
             {
-
                 Ananas.SetActive(false);
                 AnanasCutted1.SetActive(true);
                 cookingSliderAnanas.gameObject.SetActive(true);
                 carryAnanas = false;
                 carrying = false;
             }
-            if (other.CompareTag("Herd") && carryFrozen == true && cookingSliderHerd.value < 2 && controls.Gameplay.Action.triggered)
+            if (other.CompareTag("Herd") && carryFrozen == true && cookingSliderHerd.value < 2 && micro.getMaking() == false && actionInput)
             {
                 pizzaFrozen.SetActive(false);
                 cookingSliderHerd.gameObject.SetActive(true);
                 carryFrozen = false;
                 carrying = false;
-                pizzamaking = true;
+                micro.setPizza(true);
             }
-            if (other.CompareTag("Herd") && carryHuhnFrozen == true && cookingSliderHerd.value < 2)
+            if (other.CompareTag("Herd") && carryHuhnFrozen == true && cookingSliderHerd.value < 2 && micro.getMaking() == false && actionInput)
             {
                 huhnFrozen.SetActive(false);
                 cookingSliderHerd.gameObject.SetActive(true);
                 carryHuhnFrozen = false;
                 carrying = false;
-                huhnmaking = true;
+                micro.setChicken(true);
             }
-            if (other.CompareTag("Coffee") && carryTasseEmpty == true && cupMaker == false)
+            if (other.CompareTag("Coffee") && carryTasseEmpty == true && cupMaker == false && actionInput)
             {
                 TasseEmpty.SetActive(false);
                 cookingSliderKaffee.gameObject.SetActive(true);
@@ -191,7 +234,7 @@ public class recipeCrafting : MonoBehaviour
             }
             //################################################################
             // craft stations finished
-            if (cookingSliderAnanas.value == 500 && other.CompareTag("Brett") && carryPizza == true)
+            if (cookingSliderAnanas.value == 750 && other.CompareTag("Brett") && carryPizza == true && actionInput)
             {
                 APizza.SetActive(true);
                 cookingSliderAnanas.gameObject.SetActive(false);
@@ -201,7 +244,7 @@ public class recipeCrafting : MonoBehaviour
                 carryAPizza = true;
                 cookingSliderAnanas.value = 0;
             }
-            if (cookingSliderHerd.value == 500 && other.CompareTag("Herd") && carryTeller == true && pizzamaking == true)
+            if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getPizza() == true && actionInput)
             {
                 pizzaRdy.SetActive(true);
                 cookingSliderHerd.gameObject.SetActive(false);
@@ -210,9 +253,9 @@ public class recipeCrafting : MonoBehaviour
                 carrying = true;
                 carryPizza = true;
                 cookingSliderHerd.value = 0;
-                pizzamaking = false;
+                micro.setPizza(false);
             }
-            if (cookingSliderHerd.value == 500 && other.CompareTag("Herd") && carryTeller == true && huhnmaking == true)
+            if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getChicken() == true && actionInput)
             {
                 huhnRdy.SetActive(true);
                 cookingSliderHerd.gameObject.SetActive(false);
@@ -221,9 +264,9 @@ public class recipeCrafting : MonoBehaviour
                 carrying = true;
                 carryHuhnRdy = true;
                 cookingSliderHerd.value = 0;
-                huhnmaking = false;
+                micro.setChicken(false);
             }
-            if (cookingSliderKaffee.value == 500 && other.CompareTag("Coffee") && carrying == false && cupMaker == true)
+            if (cookingSliderKaffee.value == 750 && other.CompareTag("Coffee") && carrying == false && TasseMaker.gameObject.activeSelf && actionInput)
             {
                 TasseFull.SetActive(true);
                 cookingSliderKaffee.gameObject.SetActive(false);
@@ -235,11 +278,19 @@ public class recipeCrafting : MonoBehaviour
             }
             //################################################################
             // trashbin
-            if (other.CompareTag("Trash"))
+            if (other.CompareTag("Trash") && actionInput)
             {
                 ausgabeCall();
             }
     }
+    private void OnTriggerEnter(Collider other) {
+                if (other.CompareTag("Trash") && blubscore > 9 && actionInput){
+                score.decreaseScore(10);
+                }
+                if (other.CompareTag("Trash") && blubscore < 10 && actionInput){
+                score.setZero();
+                }
+            }
     public void ausgabeCall(){
             pizzaFrozen.SetActive(false);
             pizzaRdy.SetActive(false);
@@ -261,4 +312,95 @@ public class recipeCrafting : MonoBehaviour
             carryHuhnFrozen = false;
             carryHuhnRdy = false;
     }
+
+    void sortArray(){
+
+        //pls dont look at this
+
+        if(activeAndInactive2[0].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[0].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[0].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[0].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[0].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[0].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[0].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[0].gameObject;
+        }else if(activeAndInactive2[0].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[0].gameObject;
+        }else if(activeAndInactive2[0].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[0].gameObject;
+        }
+
+        if(activeAndInactive2[1].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[1].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[1].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[1].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[1].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[1].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[1].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[1].gameObject;
+        }else if(activeAndInactive2[1].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[1].gameObject;
+        }else if(activeAndInactive2[1].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[1].gameObject;
+        }
+
+        if(activeAndInactive2[2].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[2].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[2].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[2].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[2].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[2].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[2].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[2].gameObject;
+        }else if(activeAndInactive2[2].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[2].gameObject;
+        }else if(activeAndInactive2[2].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[2].gameObject;
+        }
+
+        if(activeAndInactive2[3].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[3].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[3].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[3].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[3].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[3].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[3].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[3].gameObject;
+        }else if(activeAndInactive2[3].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[3].gameObject;
+        }else if(activeAndInactive2[3].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[3].gameObject;
+        }
+
+        if(activeAndInactive2[4].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[4].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[4].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[4].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[4].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[4].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[4].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[4].gameObject;
+        }else if(activeAndInactive2[4].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[4].gameObject;
+        }else if(activeAndInactive2[4].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[4].gameObject;
+        }
+
+        if(activeAndInactive2[5].gameObject.name == "AnanasTimerChild"){
+            cookingSliderAnanas = activeAndInactive2[5].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[5].gameObject.name == "HerdTimerChild"){
+            cookingSliderHerd = activeAndInactive2[5].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[5].gameObject.name == "CoffeeTimerChild"){
+            cookingSliderKaffee = activeAndInactive2[5].GetComponent<Slider>(); 
+        }else if(activeAndInactive2[5].gameObject.name == "TasseMaker"){
+            TasseMaker = activeAndInactive2[5].gameObject;
+        }else if(activeAndInactive2[5].gameObject.name == "AnanasCutted1"){
+            AnanasCutted1 = activeAndInactive2[5].gameObject;
+        }else if(activeAndInactive2[5].gameObject.name == "AnanasCutted2"){
+            AnanasCutted2 = activeAndInactive2[5].gameObject;
+        }
+    }
+
+    public void OnAction(InputAction.CallbackContext rtx) => actionInput = rtx.ReadValueAsButton();
 }
