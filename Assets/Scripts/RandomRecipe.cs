@@ -14,6 +14,8 @@ public class RandomRecipe : MonoBehaviour
 
     public Transform Kaffee;
     public Transform Pizza;
+    public Transform Huhn;
+    public Transform Ananas;
     public Transform UI;
     public List<Transform> allRecipes;
 
@@ -40,6 +42,8 @@ public class RandomRecipe : MonoBehaviour
                 switch(random){
                     case 1: drawRecipe(Kaffee); break;
                     case 2: drawRecipe(Pizza); break;
+                    case 3: drawRecipe(Huhn); break;
+                    case 4: drawRecipe(Ananas); break;
                 }      
                 RecipeNumber++;
             }
@@ -47,7 +51,7 @@ public class RandomRecipe : MonoBehaviour
         }
         
         //fly in Recipe
-        if(allRecipes.Count != 0 && flyInChecker==true && allRecipes[allRecipes.Count-1].transform.position != RecipePosition){
+        if(allRecipes.Count != 0 && flyInChecker==true && allRecipes[allRecipes.Count-1].transform.position.x >= RecipePosition.x){
             allRecipes[RecipeNumber-1].transform.position = allRecipes[RecipeNumber-1].transform.position + new Vector3(-4,0,0);
         }
         if(allRecipes.Count != 0 && allRecipes[allRecipes.Count-1].transform.position == RecipePosition) flyInChecker = false;
@@ -56,7 +60,7 @@ public class RandomRecipe : MonoBehaviour
 
     void giveRandom(){
         random = Random.Range(1, 100);
-        if(random<50) {random = 1;} else {random = 2;}
+        if(random<25) {random = 1;}else if(random<50){random = 2;}else if(random<75){random = 3;}else{random = 4;}
     }
 
 

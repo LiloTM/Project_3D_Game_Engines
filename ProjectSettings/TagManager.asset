@@ -38,7 +38,8 @@ TagManager:
   - AnanasSlider
   - ScoreManager
   - TellerEmpty
-
+  - ChickenRecipe
+  - AnanasRecipe
   layers:
   - Default
   - TransparentFX

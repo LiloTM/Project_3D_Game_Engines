@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Marcel.unity
+    path: Assets/Scenes/Chillig.unity
     guid: 98c86349722d84129b577f05f16543a5
   m_configObjects: {}

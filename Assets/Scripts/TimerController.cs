@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TimerController : MonoBehaviour
 {
     public float t;
-    public Text timerText;
+    
     private bool finished;
+    TextMeshProUGUI textmeshPro;
 
     void Start(){
-        timerText = GetComponent<Text>();
+        textmeshPro = GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
@@ -29,7 +31,7 @@ public class TimerController : MonoBehaviour
             if(secondsFloat <= 9) seconds = "0" + secondsFloat.ToString("f0");
             else seconds = secondsFloat.ToString("f0");
 
-            timerText.text = minutes + ":" + seconds;
+            textmeshPro.text = minutes + ":" + seconds;
         }
         
     }

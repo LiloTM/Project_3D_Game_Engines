@@ -23,7 +23,7 @@ public class Ausgabe : MonoBehaviour
         if(other.gameObject.CompareTag("TasseFull")) {         
             bool isRecipe = randomRecipe.isRecipeThere("CoffeeRecipe");
             if(isRecipe){
-                score.increaseScore(5); 
+                score.increaseScore(10); 
                 randomRecipe.destroyRecipe("CoffeeRecipe");
                 recipeCrafting.ausgabeCall();
             }
@@ -38,17 +38,24 @@ public class Ausgabe : MonoBehaviour
             }
         }
 
-// TODO: add the if needed like above
-        if(other.gameObject.CompareTag("APizza") /* && it's needed*/){
+        if(other.gameObject.CompareTag("APizza")){
+            bool isRecipe = randomRecipe.isRecipeThere("AnanasRecipe");
+            if(isRecipe){
             score.increaseScore(10);   
-            randomRecipe.destroyRecipe("PizzaRecipe");
+            randomRecipe.destroyRecipe("AnanasRecipe");
             recipeCrafting.ausgabeCall();
+            }
+            
         }
 
-        if(other.gameObject.CompareTag("huhnRdy") /* && it's needed*/){
+        if(other.gameObject.CompareTag("huhnRdy")){
+            bool isRecipe = randomRecipe.isRecipeThere("ChickenRecipe");
+            if(isRecipe){
             score.increaseScore(10);   
-            randomRecipe.destroyRecipe("PizzaRecipe");
+            randomRecipe.destroyRecipe("ChickenRecipe");
             recipeCrafting.ausgabeCall();
+            }
+            
         }
     }
 }
