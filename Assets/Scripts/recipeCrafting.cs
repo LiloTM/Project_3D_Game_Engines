@@ -234,7 +234,7 @@ public class recipeCrafting : MonoBehaviour
             }
             //################################################################
             // craft stations finished
-            if (cookingSliderAnanas.value == 750 && other.CompareTag("Brett") && carryPizza == true && actionInput)
+            if (cookingSliderAnanas.value == 600 && other.CompareTag("Brett") && carryPizza == true && actionInput)
             {
                 APizza.SetActive(true);
                 cookingSliderAnanas.gameObject.SetActive(false);
@@ -267,7 +267,7 @@ public class recipeCrafting : MonoBehaviour
                 cookingSliderHerd.value = 0;
                 micro.setChicken(false);
             }
-            if (cookingSliderKaffee.value == 750 && other.CompareTag("Coffee") && carrying == false && TasseMaker.gameObject.activeSelf && actionInput)
+            if (cookingSliderKaffee.value == 1000 && other.CompareTag("Coffee") && carrying == false && TasseMaker.gameObject.activeSelf && actionInput)
             {
                 TasseFull.SetActive(true);
                 cookingSliderKaffee.gameObject.SetActive(false);
