@@ -242,6 +242,7 @@ public class recipeCrafting : MonoBehaviour
                 AnanasCutted2.SetActive(false);
                 carryPizza = false;
                 carryAPizza = true;
+                carrying = true;
                 cookingSliderAnanas.value = 0;
             }
             if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getPizza() == true && actionInput)
@@ -278,11 +279,18 @@ public class recipeCrafting : MonoBehaviour
             }
             //################################################################
             // trashbin
-            if (other.CompareTag("Trash") && actionInput)
+            if (other.CompareTag("Trash") && actionInput && carrying == true)
             {
                 ausgabeCall();
             }
-    }
+            if (other.CompareTag("Trash") && blubscore > 9 && actionInput && carrying == true){
+                score.decreaseScore(10);
+                }
+                if (other.CompareTag("Trash") && blubscore < 10 && actionInput && carrying == true){
+                score.setZero();
+                }
+            }
+    /*
     private void OnTriggerEnter(Collider other) {
                 if (other.CompareTag("Trash") && blubscore > 9 && actionInput){
                 score.decreaseScore(10);
@@ -291,6 +299,8 @@ public class recipeCrafting : MonoBehaviour
                 score.setZero();
                 }
             }
+     */
+
     public void ausgabeCall(){
             pizzaFrozen.SetActive(false);
             pizzaRdy.SetActive(false);
