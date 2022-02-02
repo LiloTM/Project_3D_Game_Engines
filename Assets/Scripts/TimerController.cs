@@ -33,6 +33,10 @@ public class TimerController : MonoBehaviour
 
             textmeshPro.text = minutes + ":" + seconds;
         }
-        
+    }
+
+    public bool getFinished() 
+    {
+        return finished;
     }
 }
