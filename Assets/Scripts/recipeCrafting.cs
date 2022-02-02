@@ -33,8 +33,6 @@ public class recipeCrafting : MonoBehaviour
     private microwaveBoolean micro;
 
     int blubscore;
-
-    private Controls controls;
     private Score score;
     AudioSource[] activeAndInactive2;
     // Start is called before the first frame update
@@ -119,21 +117,6 @@ public class recipeCrafting : MonoBehaviour
 
         //knopfdruck = false;
     }
-    private void Awake()
-    {
-        controls = new Controls();
-    }
-
-    private void OnEnable()
-    {
-        controls.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.Disable();
-    }
-
     // Update is called once per frame
     void FixedUpdate()
     {

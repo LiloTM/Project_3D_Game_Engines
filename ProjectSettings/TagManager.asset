@@ -41,6 +41,9 @@ TagManager:
   - ChickenRecipe
   - AnanasRecipe
   - UI_Info
+  - HerdTimerChild
+  - KaffeeTimerChild
+  - UITag
   layers:
   - Default
   - TransparentFX

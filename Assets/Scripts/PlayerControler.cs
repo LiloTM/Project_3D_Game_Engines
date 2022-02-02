@@ -11,13 +11,19 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] float rotationSpeed;
     private Vector2 movementInput;
     private Animator anim;
+    private GameMenu gameMenu;
+    private bool pauseBool;
 
     private void Start(){
         anim = GetComponent<Animator>();
+        gameMenu = GameObject.FindGameObjectWithTag("UITag").GetComponent<GameMenu>();
     }
 
-    void Update(){
+    void FixedUpdate(){
         PlayerMovement();
+        if(pauseBool){
+            PauseGame();
+        }
     }
 
     void PlayerMovement(){
@@ -47,4 +53,9 @@ public class PlayerControler : MonoBehaviour
     }
 
     public void OnMove(InputAction.CallbackContext ctx) => movementInput = ctx.ReadValue<Vector2>();
+    public void OnPause(InputAction.CallbackContext ptx) => pauseBool = ptx.ReadValueAsButton();
+
+    void PauseGame(){
+        gameMenu.PauseMenu();
+    }
 }

@@ -41,20 +41,15 @@ public class GameMenu : MonoBehaviour
           startUI.SetActive(false);
         } 
         
-        /*
+        
         // Pause menu
+        /*
         if (Input.GetKeyDown(KeyCode.Escape)) 
         {
-            if (gameIsPaused)
-            {
-                Resume(); 
-            }
-            else 
-            {                 
-                Pause();
-            }
+            pausenMenu();
         }
         */
+        
         
         // Timer is over
         if(timerController.getFinished())
@@ -63,6 +58,10 @@ public class GameMenu : MonoBehaviour
             textScore.text = scoreScript.getScore().ToString();
             winUI.SetActive(true);
         }
+    }
+
+    public void PauseMenu(){       
+        Pause();
     }
 
     public void BackToStartMenu() {

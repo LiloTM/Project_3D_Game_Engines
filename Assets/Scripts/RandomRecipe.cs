@@ -23,6 +23,7 @@ public class RandomRecipe : MonoBehaviour
     {
         giveRandom();
         counter = timeRemaining;
+        giveRecipe();
     }
 
     void Update()
@@ -31,30 +32,33 @@ public class RandomRecipe : MonoBehaviour
         if (timeRemaining > 0) {
             timeRemaining -= Time.deltaTime;
         }
-
-        // randomizer for recipes
         if(timeRemaining <= counter-10) {
+            giveRecipe();
             counter -= 10;
-            giveRandom();
-            flyInChecker = true;
-            Debug.Log(random + " " + timeRemaining);
-            if(RecipeNumber < highestRecipeNumber){
-                switch(random){
-                    case 1: drawRecipe(Kaffee); break;
-                    case 2: drawRecipe(Pizza); break;
-                    case 3: drawRecipe(Huhn); break;
-                    case 4: drawRecipe(Ananas); break;
-                }      
-                RecipeNumber++;
-            }
-            
         }
+                
         
         //fly in Recipe
         if(allRecipes.Count != 0 && flyInChecker==true && allRecipes[allRecipes.Count-1].transform.position.x >= RecipePosition.x){
             allRecipes[RecipeNumber-1].transform.position = allRecipes[RecipeNumber-1].transform.position + new Vector3(-4,0,0);
         }
         if(allRecipes.Count != 0 && allRecipes[allRecipes.Count-1].transform.position == RecipePosition) flyInChecker = false;
+    }
+
+    void giveRecipe(){
+        // randomizer for recipes
+        giveRandom();
+        flyInChecker = true;
+        //Debug.Log(random + " " + timeRemaining);
+        if(RecipeNumber < highestRecipeNumber){
+            switch(random){
+                case 1: drawRecipe(Kaffee); break;
+                case 2: drawRecipe(Pizza); break;
+                case 3: drawRecipe(Huhn); break;
+                case 4: drawRecipe(Ananas); break;
+            }      
+            RecipeNumber++;
+        }
     }
 
 
