@@ -115,6 +115,8 @@ public class recipeCrafting : MonoBehaviour
 
         blubscore = 0;
 
+        AudioListener.volume = PlayerPrefs.GetFloat("musicVolume");
+
         //knopfdruck = false;
     }
     // Update is called once per frame

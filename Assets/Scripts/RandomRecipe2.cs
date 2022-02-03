@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomRecipe : MonoBehaviour
+public class RandomRecipe2 : MonoBehaviour
 {
     int random;
     int RecipeNumber = 0;
@@ -32,15 +32,15 @@ public class RandomRecipe : MonoBehaviour
         if (timeRemaining > 0) {
             timeRemaining -= Time.deltaTime;
         }
-        if(timeRemaining <= counter-12) {
+        if(timeRemaining <= counter-6) {
             giveRecipe();
-            counter -= 12;
+            counter -= 6;
         }
                 
         
         //fly in Recipe
         if(allRecipes.Count != 0 && flyInChecker==true && allRecipes[allRecipes.Count-1].transform.position.x >= RecipePosition.x){
-            allRecipes[RecipeNumber-1].transform.position = allRecipes[RecipeNumber-1].transform.position + new Vector3(-8,0,0);
+            allRecipes[RecipeNumber-1].transform.position = allRecipes[RecipeNumber-1].transform.position + new Vector3(-10,0,0);
         }
         if(allRecipes.Count != 0 && allRecipes[allRecipes.Count-1].transform.position == RecipePosition) flyInChecker = false;
     }
