@@ -6,7 +6,7 @@ public class Ausgabe : MonoBehaviour
 {
     public Score score;
     public RandomRecipe randomRecipe;
-    public recipeCrafting recipeCrafting;
+    //private recipeCrafting recipeCrafting;
 
     private GameObject pizzaRdy;
     private GameObject APizza;
@@ -25,7 +25,7 @@ public class Ausgabe : MonoBehaviour
             if(isRecipe){
                 score.increaseScore(10); 
                 randomRecipe.destroyRecipe("CoffeeRecipe");
-                recipeCrafting.ausgabeCall();
+                //recipeCrafting.ausgabeCall();
             }
         }
 
@@ -34,7 +34,7 @@ public class Ausgabe : MonoBehaviour
             if(isRecipe){
                 score.increaseScore(10);   
                 randomRecipe.destroyRecipe("PizzaRecipe");
-                recipeCrafting.ausgabeCall();
+                //recipeCrafting.ausgabeCall();
             }
         }
 
@@ -43,7 +43,7 @@ public class Ausgabe : MonoBehaviour
             if(isRecipe){
             score.increaseScore(10);   
             randomRecipe.destroyRecipe("AnanasRecipe");
-            recipeCrafting.ausgabeCall();
+            //recipeCrafting.ausgabeCall();
             }
             
         }
@@ -53,7 +53,7 @@ public class Ausgabe : MonoBehaviour
             if(isRecipe){
             score.increaseScore(10);   
             randomRecipe.destroyRecipe("ChickenRecipe");
-            recipeCrafting.ausgabeCall();
+            //recipeCrafting.ausgabeCall();
             }
             
         }

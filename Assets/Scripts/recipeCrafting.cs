@@ -52,15 +52,15 @@ public class recipeCrafting : MonoBehaviour
         Debug.Log("AnanasCutted1 = " + AnanasCutted1);
 
         //cookingSliderHerd = activeAndInactive2[1].GetComponent<Slider>(); 
-        if(cookingSliderHerd.gameObject.activeSelf){
+        if (cookingSliderHerd.gameObject.activeSelf) {
             cookingSliderHerd.gameObject.SetActive(false);
         }
         //cookingSliderKaffee = activeAndInactive2[4].GetComponent<Slider>(); 
-        if(cookingSliderKaffee.gameObject.activeSelf){
+        if (cookingSliderKaffee.gameObject.activeSelf) {
             cookingSliderKaffee.gameObject.SetActive(false);
         }
         //cookingSliderAnanas = activeAndInactive2[0].GetComponent<Slider>(); 
-        if(cookingSliderAnanas.gameObject.activeSelf){
+        if (cookingSliderAnanas.gameObject.activeSelf) {
             cookingSliderAnanas.gameObject.SetActive(false);
         }
 
@@ -122,22 +122,22 @@ public class recipeCrafting : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(cookingSliderHerd.gameObject.activeSelf){
+        if (cookingSliderHerd.gameObject.activeSelf) {
             cookingSliderHerd.value = cookingSliderHerd.value + 2;
-        } 
-        if(cookingSliderKaffee.gameObject.activeSelf){
+        }
+        if (cookingSliderKaffee.gameObject.activeSelf) {
             cookingSliderKaffee.value = cookingSliderKaffee.value + 2;
         }
-        if(cookingSliderAnanas.gameObject.activeSelf){
+        if (cookingSliderAnanas.gameObject.activeSelf) {
             cookingSliderAnanas.value = cookingSliderAnanas.value + 2;
         }
-        
 
-        if(cookingSliderAnanas.value > 250){
+
+        if (cookingSliderAnanas.value > 250) {
             AnanasCutted1.SetActive(false);
             AnanasCutted2.SetActive(true);
         }
-        
+
         blubscore = score.getScore();
     }
 
@@ -152,129 +152,138 @@ public class recipeCrafting : MonoBehaviour
 
     private void OnTriggerStay(Collider other) {
         //Basic Items 
-            if (other.CompareTag("Fridge") && carrying == false && actionInput)
-            {
-                pizzaFrozen.SetActive(true);
-                carryFrozen = true;
-                carrying = true;
-            }
-            if (other.CompareTag("FridgeHuhn") && carrying == false && actionInput)
-            {
-                huhnFrozen.SetActive(true);
-                carryHuhnFrozen = true;
-                carrying = true;
-            }
-            if (other.CompareTag("AnanasBox") && carrying == false && actionInput)
-            {
-                Ananas.SetActive(true);
-                carryAnanas = true;
-                carrying = true;
-            }
-            if (other.CompareTag("Teller") && carrying == false && actionInput)
-            {
-                tellerEmpty.SetActive(true);
-                carryTeller = true;
-                carrying = true;
-            }
-            if (other.CompareTag("Tasse") && carrying == false && actionInput)
-            {
-                TasseEmpty.SetActive(true);
-                carryTasseEmpty = true;
-                carrying = true;
-            }
-            //################################################################
-            // craft stations starting
-            if (other.CompareTag("Brett") && carryAnanas == true && actionInput)
-            {
-                Ananas.SetActive(false);
-                AnanasCutted1.SetActive(true);
-                cookingSliderAnanas.gameObject.SetActive(true);
-                carryAnanas = false;
-                carrying = false;
-            }
-            if (other.CompareTag("Herd") && carryFrozen == true && cookingSliderHerd.value < 2 && micro.getMaking() == false && actionInput)
-            {
-                pizzaFrozen.SetActive(false);
-                cookingSliderHerd.gameObject.SetActive(true);
-                carryFrozen = false;
-                carrying = false;
-                micro.setPizza(true);
-            }
-            if (other.CompareTag("Herd") && carryHuhnFrozen == true && cookingSliderHerd.value < 2 && micro.getMaking() == false && actionInput)
-            {
-                huhnFrozen.SetActive(false);
-                cookingSliderHerd.gameObject.SetActive(true);
-                carryHuhnFrozen = false;
-                carrying = false;
-                micro.setChicken(true);
-            }
-            if (other.CompareTag("Coffee") && carryTasseEmpty == true && cupMaker == false && actionInput)
-            {
-                TasseEmpty.SetActive(false);
-                cookingSliderKaffee.gameObject.SetActive(true);
-                TasseMaker.gameObject.SetActive(true);
-                cupMaker = true;
-                carryTasseEmpty = false;
-                carrying = false;
-            }
-            //################################################################
-            // craft stations finished
-            if (cookingSliderAnanas.value == 600 && other.CompareTag("Brett") && carryPizza == true && actionInput)
-            {
-                APizza.SetActive(true);
-                cookingSliderAnanas.gameObject.SetActive(false);
-                pizzaRdy.SetActive(false);
-                AnanasCutted2.SetActive(false);
-                carryPizza = false;
-                carryAPizza = true;
-                carrying = true;
-                cookingSliderAnanas.value = 0;
-            }
-            if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getPizza() == true && actionInput)
-            {
-                pizzaRdy.SetActive(true);
-                cookingSliderHerd.gameObject.SetActive(false);
-                tellerEmpty.SetActive(false);
-                carryTeller = false;
-                carrying = true;
-                carryPizza = true;
-                cookingSliderHerd.value = 0;
-                micro.setPizza(false);
-            }
-            if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getChicken() == true && actionInput)
-            {
-                huhnRdy.SetActive(true);
-                cookingSliderHerd.gameObject.SetActive(false);
-                tellerEmpty.SetActive(false);
-                carryTeller = false;
-                carrying = true;
-                carryHuhnRdy = true;
-                cookingSliderHerd.value = 0;
-                micro.setChicken(false);
-            }
-            if (cookingSliderKaffee.value == 1000 && other.CompareTag("Coffee") && carrying == false && TasseMaker.gameObject.activeSelf && actionInput)
-            {
-                TasseFull.SetActive(true);
-                cookingSliderKaffee.gameObject.SetActive(false);
-                TasseMaker.gameObject.SetActive(false);
-                carryTasseFull = true;
-                carrying = true;
-                cupMaker = false;
-                cookingSliderKaffee.value = 0;
-            }
-            //################################################################
-            // trashbin
-            if (other.CompareTag("Trash") && actionInput && carrying == true)
-            {
-                ausgabeCall();
-            }
-            if (other.CompareTag("Trash") && blubscore > 9 && actionInput && carrying == true){
-                score.decreaseScore(10);
-                }
-                if (other.CompareTag("Trash") && blubscore < 10 && actionInput && carrying == true){
-                score.setZero();
-                }
-            }
+        if (other.CompareTag("Fridge") && carrying == false && actionInput)
+        {
+            pizzaFrozen.SetActive(true);
+            carryFrozen = true;
+            carrying = true;
+        }
+        if (other.CompareTag("FridgeHuhn") && carrying == false && actionInput)
+        {
+            huhnFrozen.SetActive(true);
+            carryHuhnFrozen = true;
+            carrying = true;
+        }
+        if (other.CompareTag("AnanasBox") && carrying == false && actionInput)
+        {
+            Ananas.SetActive(true);
+            carryAnanas = true;
+            carrying = true;
+        }
+        if (other.CompareTag("Teller") && carrying == false && actionInput)
+        {
+            tellerEmpty.SetActive(true);
+            carryTeller = true;
+            carrying = true;
+        }
+        if (other.CompareTag("Tasse") && carrying == false && actionInput)
+        {
+            TasseEmpty.SetActive(true);
+            carryTasseEmpty = true;
+            carrying = true;
+        }
+        //################################################################
+        // craft stations starting
+        if (other.CompareTag("Brett") && carryAnanas == true && actionInput)
+        {
+            Ananas.SetActive(false);
+            AnanasCutted1.SetActive(true);
+            cookingSliderAnanas.gameObject.SetActive(true);
+            carryAnanas = false;
+            carrying = false;
+        }
+        if (other.CompareTag("Herd") && carryFrozen == true && cookingSliderHerd.value < 2 && micro.getMaking() == false && actionInput)
+        {
+            pizzaFrozen.SetActive(false);
+            cookingSliderHerd.gameObject.SetActive(true);
+            carryFrozen = false;
+            carrying = false;
+            micro.setPizza(true);
+        }
+        if (other.CompareTag("Herd") && carryHuhnFrozen == true && cookingSliderHerd.value < 2 && micro.getMaking() == false && actionInput)
+        {
+            huhnFrozen.SetActive(false);
+            cookingSliderHerd.gameObject.SetActive(true);
+            carryHuhnFrozen = false;
+            carrying = false;
+            micro.setChicken(true);
+        }
+        if (other.CompareTag("Coffee") && carryTasseEmpty == true && cupMaker == false && actionInput)
+        {
+            TasseEmpty.SetActive(false);
+            cookingSliderKaffee.gameObject.SetActive(true);
+            TasseMaker.gameObject.SetActive(true);
+            cupMaker = true;
+            carryTasseEmpty = false;
+            carrying = false;
+        }
+        //################################################################
+        // craft stations finished
+        if (cookingSliderAnanas.value == 600 && other.CompareTag("Brett") && carryPizza == true && actionInput)
+        {
+            APizza.SetActive(true);
+            cookingSliderAnanas.gameObject.SetActive(false);
+            pizzaRdy.SetActive(false);
+            AnanasCutted2.SetActive(false);
+            carryPizza = false;
+            carryAPizza = true;
+            carrying = true;
+            cookingSliderAnanas.value = 0;
+        }
+        if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getPizza() == true && actionInput)
+        {
+            pizzaRdy.SetActive(true);
+            cookingSliderHerd.gameObject.SetActive(false);
+            tellerEmpty.SetActive(false);
+            carryTeller = false;
+            carrying = true;
+            carryPizza = true;
+            cookingSliderHerd.value = 0;
+            micro.setPizza(false);
+        }
+        if (cookingSliderHerd.value == 1000 && other.CompareTag("Herd") && carryTeller == true && micro.getChicken() == true && actionInput)
+        {
+            huhnRdy.SetActive(true);
+            cookingSliderHerd.gameObject.SetActive(false);
+            tellerEmpty.SetActive(false);
+            carryTeller = false;
+            carrying = true;
+            carryHuhnRdy = true;
+            cookingSliderHerd.value = 0;
+            micro.setChicken(false);
+        }
+        if (cookingSliderKaffee.value == 1000 && other.CompareTag("Coffee") && carrying == false && TasseMaker.gameObject.activeSelf && actionInput)
+        {
+            TasseFull.SetActive(true);
+            cookingSliderKaffee.gameObject.SetActive(false);
+            TasseMaker.gameObject.SetActive(false);
+            carryTasseFull = true;
+            carrying = true;
+            cupMaker = false;
+            cookingSliderKaffee.value = 0;
+        }
+        //################################################################
+        // trashbin
+        if (other.CompareTag("Trash") && actionInput && carrying == true)
+        {
+            ausgabeCall();
+        }
+        if (other.CompareTag("Trash") && blubscore > 9 && actionInput && carrying == true) {
+            score.decreaseScore(10);
+        }
+        if (other.CompareTag("Trash") && blubscore < 10 && actionInput && carrying == true) {
+            score.setZero();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Ausgabe") && carrying == true)
+        {
+            ausgabeCall();
+        }
+    }
+
     /*
     private void OnTriggerEnter(Collider other) {
                 if (other.CompareTag("Trash") && blubscore > 9 && actionInput){

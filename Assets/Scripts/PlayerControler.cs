@@ -34,7 +34,6 @@ public class PlayerControler : MonoBehaviour
 
         if (playerMovement != Vector3.zero) {
             anim.SetBool("isRunning", true);
-            Debug.Log("Im Running!");
         }
         else
         {
