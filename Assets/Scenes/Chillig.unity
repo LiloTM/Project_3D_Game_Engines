@@ -8923,7 +8923,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: {fileID: 1070243275}
   randomRecipe: {fileID: 1169632988}
-  recipeCrafting: {fileID: 2108699239}
 --- !u!65 &1522513480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8935,8 +8934,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.813428, y: 4.48946, z: 4.4615216}
-  m_Center: {x: 0.14358854, y: -0.15593767, z: -1.7420824}
+  m_Size: {x: 5.5387735, y: 4.48946, z: 4.4615216}
+  m_Center: {x: -0.71908426, y: -0.15593767, z: -1.7420824}
 --- !u!4 &1522513481
 Transform:
   m_ObjectHideFlags: 0
@@ -12438,17 +12437,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: a2bc5fda40d1ee24ea8d96aa11802285, type: 3}
   m_PrefabInstance: {fileID: 2093028885}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2108699239 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8588649635092864099, guid: 2e9bd0f0b3d8e8e4c9dbce30aad9bc80, type: 3}
-  m_PrefabInstance: {fileID: 110863199}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc5b99d111f94a248a5c6fb1de7e76ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2109788330 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1000010642358986, guid: 3dcb1df6c82dde44f9dac4ef0ed2b1f4, type: 3}
