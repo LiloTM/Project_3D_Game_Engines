@@ -995,6 +995,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8588649635092864109, guid: 2e9bd0f0b3d8e8e4c9dbce30aad9bc80, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8588649635092864122, guid: 2e9bd0f0b3d8e8e4c9dbce30aad9bc80, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3095,12 +3099,12 @@ GameObject:
   - component: {fileID: 510251677}
   - component: {fileID: 510251676}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: PlayerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &510251676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3114,7 +3118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_NotificationBehavior: 0
-  m_MaxPlayerCount: -1
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:
@@ -3134,7 +3138,7 @@ MonoBehaviour:
       m_Interactions: 
       m_SingletonActionBindings: []
     m_Reference: {fileID: 0}
-  m_PlayerPrefab: {fileID: 5158189426131514081, guid: 74ea1c143876e51449bf95a8d1b66cf0, type: 3}
+  m_PlayerPrefab: {fileID: 8588649635092864109, guid: 2e9bd0f0b3d8e8e4c9dbce30aad9bc80, type: 3}
   m_SplitScreen: 0
   m_MaintainAspectRatioInSplitScreen: 0
   m_FixedNumberOfSplitScreens: -1

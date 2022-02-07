@@ -10,7 +10,7 @@ public class RandomRecipe2 : MonoBehaviour
     float counter;
     private Vector3 RecipePosition;
     bool flyInChecker;
-    public float timeRemaining = 100;
+    public float timeRemaining = 10000;
 
     public Transform Kaffee;
     public Transform Pizza;
@@ -40,9 +40,12 @@ public class RandomRecipe2 : MonoBehaviour
         
         //fly in Recipe
         if(allRecipes.Count != 0 && flyInChecker==true && allRecipes[allRecipes.Count-1].transform.position.x >= RecipePosition.x){
-            allRecipes[RecipeNumber-1].transform.position = allRecipes[RecipeNumber-1].transform.position + new Vector3(-10,0,0);
+            allRecipes[RecipeNumber-1].transform.position = allRecipes[RecipeNumber-1].transform.position + new Vector3(-30,0,0);
         }
-        if(allRecipes.Count != 0 && allRecipes[allRecipes.Count-1].transform.position == RecipePosition) flyInChecker = false;
+        if(allRecipes.Count != 0 && allRecipes[allRecipes.Count-1].transform.position == RecipePosition){
+            flyInChecker = false;
+            allRecipes[RecipeNumber-1].transform.position = RecipePosition;
+        } 
     }
 
     void giveRecipe(){
@@ -89,6 +92,7 @@ public class RandomRecipe2 : MonoBehaviour
     }
 
     public void destroyRecipe(string tag){
+        allRecipes[RecipeNumber-1].transform.position = RecipePosition;
         var checker = false;
         int index = 10000;
         foreach(Transform item in allRecipes){
