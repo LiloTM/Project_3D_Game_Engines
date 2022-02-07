@@ -267,12 +267,13 @@ public class recipeCrafting : MonoBehaviour
         if (other.CompareTag("Trash") && actionInput && carrying == true)
         {
             ausgabeCall();
-        }
-        if (other.CompareTag("Trash") && blubscore > 9 && actionInput && carrying == true) {
-            score.decreaseScore(10);
-        }
-        if (other.CompareTag("Trash") && blubscore < 10 && actionInput && carrying == true) {
-            score.setZero();
+            if (blubscore > 9)
+            {
+                score.decreaseScore(10);
+            }
+            else {
+                score.setZero();
+            }
         }
     }
 
