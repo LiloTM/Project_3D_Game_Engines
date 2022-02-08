@@ -274,7 +274,7 @@ public class recipeCrafting : MonoBehaviour
             cookingSliderHerd.value = 0;
             micro.setChicken(false);
         }
-        if (cookingSliderKaffee.value == 800 && other.CompareTag("Coffee") && carrying == false && TasseMaker.gameObject.activeSelf && actionInput)
+        if (cookingSliderKaffee.value == 700 && other.CompareTag("Coffee") && carrying == false && TasseMaker.gameObject.activeSelf && actionInput)
         {
             TasseFull.SetActive(true);
             cookingSliderKaffee.gameObject.SetActive(false);
