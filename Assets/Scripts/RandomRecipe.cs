@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RandomRecipe : MonoBehaviour
 {
@@ -19,8 +20,20 @@ public class RandomRecipe : MonoBehaviour
     public Transform UI;
     public List<Transform> allRecipes;
 
+    private int timerZeit;
+
     void Start()
     {
+        Scene scene = SceneManager.GetActiveScene();
+        if (scene.name == "Chillig")
+        {
+            timerZeit = 12;
+        }
+        else
+        {
+            timerZeit = 6;
+        }
+
         giveRandom();
         counter = timeRemaining;
         giveRecipe();
@@ -32,9 +45,9 @@ public class RandomRecipe : MonoBehaviour
         if (timeRemaining > 0) {
             timeRemaining -= Time.deltaTime;
         }
-        if(timeRemaining <= counter-12) {
+        if(timeRemaining <= counter- timerZeit) {
             giveRecipe();
-            counter -= 12;
+            counter -= timerZeit;
         }
                 
         

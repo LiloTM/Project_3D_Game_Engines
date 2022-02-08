@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-
+using UnityEngine.SceneManagement;
 
 
 public class recipeCrafting : MonoBehaviour
@@ -38,9 +38,21 @@ public class recipeCrafting : MonoBehaviour
     int blubscore;
     private Score score;
     AudioSource[] activeAndInactive2;
+
+    private int lMicro;
     // Start is called before the first frame update
     void Start()
     {
+        Scene scene = SceneManager.GetActiveScene();
+
+        if (scene.name == "Chillig")
+        {
+            lMicro = 700;
+        }
+        else {
+            lMicro = 400;
+        }
+
         micro = GameObject.FindGameObjectWithTag("Herd").GetComponent<microwaveBoolean>();
 
         Slider[] activeAndInactive = GameObject.FindObjectsOfType<Slider>(true);
@@ -160,6 +172,8 @@ public class recipeCrafting : MonoBehaviour
 
     private void OnTriggerStay(Collider other) {
         //Basic Items 
+
+        
         if (other.CompareTag("Fridge") && carrying == false && actionInput)
         {
             pizzaFrozen.SetActive(true);
@@ -238,7 +252,7 @@ public class recipeCrafting : MonoBehaviour
             carrying = true;
             cookingSliderAnanas.value = 0;
         }
-        if (cookingSliderHerd.value == 700 && other.CompareTag("Herd") && carryTeller == true && micro.getPizza() == true && actionInput)
+        if (cookingSliderHerd.value == lMicro && other.CompareTag("Herd") && carryTeller == true && micro.getPizza() == true && actionInput)
         {
             pizzaRdy.SetActive(true);
             cookingSliderHerd.gameObject.SetActive(false);
@@ -249,7 +263,7 @@ public class recipeCrafting : MonoBehaviour
             cookingSliderHerd.value = 0;
             micro.setPizza(false);
         }
-        if (cookingSliderHerd.value == 700 && other.CompareTag("Herd") && carryTeller == true && micro.getChicken() == true && actionInput)
+        if (cookingSliderHerd.value == lMicro && other.CompareTag("Herd") && carryTeller == true && micro.getChicken() == true && actionInput)
         {
             huhnRdy.SetActive(true);
             cookingSliderHerd.gameObject.SetActive(false);
