@@ -1505,6 +1505,7 @@ GameObject:
   - component: {fileID: 160468047}
   - component: {fileID: 160468048}
   - component: {fileID: 160468049}
+  - component: {fileID: 160468050}
   m_Layer: 5
   m_Name: AnanasTimerChild
   m_TagString: AnanasSlider
@@ -1577,7 +1578,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 600
+  m_MaxValue: 500
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -1593,7 +1594,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ef84d82678c529b4f9423dc92c089f60, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 81766ec2e2d2ed04e80aeaf0e7f9691f, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1679,6 +1680,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &160468050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 160468046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74efd523d0763b4cafc9d62421de9cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &161893468
 GameObject:
   m_ObjectHideFlags: 0
@@ -2014,6 +2027,7 @@ GameObject:
   - component: {fileID: 200275329}
   - component: {fileID: 200275330}
   - component: {fileID: 200275331}
+  - component: {fileID: 200275332}
   m_Layer: 5
   m_Name: HerdTimerChild
   m_TagString: HerdSlider
@@ -2086,7 +2100,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 700
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -2102,7 +2116,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 51b5c3bb63d930d4a9181df00578e56e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: d77d96b6df2bfc145bdcea4651410903, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -2188,6 +2202,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &200275332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200275328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74efd523d0763b4cafc9d62421de9cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &211568417
 GameObject:
   m_ObjectHideFlags: 0
@@ -8288,6 +8314,7 @@ GameObject:
   - component: {fileID: 1429757470}
   - component: {fileID: 1429757471}
   - component: {fileID: 1429757472}
+  - component: {fileID: 1429757473}
   m_Layer: 5
   m_Name: CoffeeTimerChild
   m_TagString: KaffeeSlider
@@ -8360,7 +8387,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 700
   m_WholeNumbers: 1
   m_Value: 0
   m_OnValueChanged:
@@ -8462,6 +8489,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1429757473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429757469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b74efd523d0763b4cafc9d62421de9cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1430058525 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8946722261615911756, guid: d0ae5835368774382a9321ff2639ae59, type: 3}
@@ -11683,6 +11722,49 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c51c3e335927d422f8fce3e05cc8ea66, type: 3}
+--- !u!1 &1966844184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1966844186}
+  - component: {fileID: 1966844185}
+  m_Layer: 0
+  m_Name: TimerHandler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1966844185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966844184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 184c9aa17e8dd4f47a9c1ce8026144f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1966844186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966844184}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.7835424, y: 2.572546, z: -0.37319046}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1970155618
 GameObject:
   m_ObjectHideFlags: 0

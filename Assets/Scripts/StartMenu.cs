@@ -39,7 +39,6 @@ public class StartMenu : MonoBehaviour
         //sound = GetComponent<AudioSource>();
         //sound.Play();
 
-
     }
 
     void Update() {

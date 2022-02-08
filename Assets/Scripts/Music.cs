@@ -11,10 +11,11 @@ public class Music : MonoBehaviour
     void Start()
     {
         if(PlayerPrefs.HasKey("musicVolume")) {
-            PlayerPrefs.SetFloat("musicVolume", 1);
+            //PlayerPrefs.SetFloat("musicVolume", 1);
             Load();
         }
         else {
+            PlayerPrefs.SetFloat("musicVolume", 1);
             Load();
         }
     }

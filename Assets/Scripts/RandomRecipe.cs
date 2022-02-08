@@ -75,7 +75,7 @@ public class RandomRecipe : MonoBehaviour
         Transform newRecipe = Instantiate (newRecipeItem, UI);     
         //newRecipe.transform.position = newRecipe.position + new Vector3(RecipeNumber*180,0,0);
         RecipePosition = newRecipe.position + new Vector3(RecipeNumber*180,0,0);
-        newRecipe.transform.position = newRecipe.position + new Vector3(1900,0,0);
+        newRecipe.transform.position = newRecipe.position + new Vector3(1800,0,0);
         
         allRecipes.Add(newRecipe);
     }
