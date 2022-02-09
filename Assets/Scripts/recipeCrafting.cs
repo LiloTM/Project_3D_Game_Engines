@@ -20,10 +20,6 @@ public class recipeCrafting : MonoBehaviour
     private GameObject AnanasCutted2;
     private GameObject huhnFrozen;
     private GameObject huhnRdy;
-
-    private deactivateSound a;
-    private deactivateSound b;
-    private deactivateSound c;
     //private bool knopfdruck;
 
     private Slider cookingSliderHerd;
@@ -65,24 +61,6 @@ public class recipeCrafting : MonoBehaviour
         sortArray();
         Debug.Log("cookingSliderKaffee = " + cookingSliderKaffee);
         Debug.Log("AnanasCutted1 = " + AnanasCutted1);
-        a = cookingSliderHerd.gameObject.GetComponent<deactivateSound>();
-        b = cookingSliderKaffee.gameObject.GetComponent<deactivateSound>();
-        c = cookingSliderAnanas.gameObject.GetComponent<deactivateSound>();
-        //cookingSliderHerd = activeAndInactive2[1].GetComponent<Slider>(); 
-        if (cookingSliderHerd.gameObject.activeSelf) {
-            a.SetOn();
-            cookingSliderHerd.gameObject.SetActive(false);
-        }
-        //cookingSliderKaffee = activeAndInactive2[4].GetComponent<Slider>(); 
-        if (cookingSliderKaffee.gameObject.activeSelf) {
-            b.SetOn();
-            cookingSliderKaffee.gameObject.SetActive(false);
-        }
-        //cookingSliderAnanas = activeAndInactive2[0].GetComponent<Slider>(); 
-        if (cookingSliderAnanas.gameObject.activeSelf) {
-            c.SetOn();
-            cookingSliderAnanas.gameObject.SetActive(false);
-        }
 
         score = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<Score>();
 
@@ -142,22 +120,6 @@ public class recipeCrafting : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (cookingSliderHerd.gameObject.activeSelf) {
-            cookingSliderHerd.value = cookingSliderHerd.value + 2;
-        }
-        if (cookingSliderKaffee.gameObject.activeSelf) {
-            cookingSliderKaffee.value = cookingSliderKaffee.value + 2;
-        }
-        if (cookingSliderAnanas.gameObject.activeSelf) {
-            cookingSliderAnanas.value = cookingSliderAnanas.value + 2;
-        }
-
-
-        if (cookingSliderAnanas.value > 250) {
-            AnanasCutted1.SetActive(false);
-            AnanasCutted2.SetActive(true);
-        }
-
         blubscore = score.getScore();
     }
 
